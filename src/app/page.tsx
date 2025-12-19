@@ -61,6 +61,8 @@ export default function Home() {
                 <a href="#pricing">QUERO ACESSO IMEDIATO POR R$39,90</a>
               </Button>
               <p className="mt-4 text-sm text-slate-400">Pagamento Único • Acesso Vitalício • 7 Dias de Garantia</p>
+              <p className="mt-2 text-sm font-semibold text-white">Oferta válida por poucos dias!</p>
+              <p className="text-sm text-slate-300">Acesso imediato após a compra</p>
             </div>
           </div>
         </section>
