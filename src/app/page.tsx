@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Baby, Carrot, ChefHat, Heart, UtensilsCrossed, CheckCircle2, HelpCircle, Flame, ShieldCheck, ListChecks, BookOpenCheck, Snowflake, ShieldAlert, BrainCircuit, Sparkles, Star, Salad, ClipboardCheck, Clock, Smile } from 'lucide-react';
+import { Baby, Carrot, ChefHat, Heart, UtensilsCrossed, CheckCircle2, HelpCircle, Flame, ShieldCheck, ListChecks, BookOpenCheck, Snowflake, ShieldAlert, BrainCircuit, Sparkles, Star, Salad, ClipboardCheck, Clock, Smile, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -416,6 +416,10 @@ export default function Home() {
 
       <footer className="bg-card border-t mt-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col justify-center items-center gap-4 text-center">
+          <a href="https://www.instagram.com/crescendosaudavel.oficial" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
+            <Instagram className="h-5 w-5" />
+            <span>crescendosaudavel.oficial</span>
+          </a>
           <p className="text-sm text-muted-foreground">COPYRIGHT © {new Date().getFullYear()} | TODOS OS DIREITOS RESERVADOS A CRESCENDO SAUDÁVEL.</p>
           <p className="text-xs text-muted-foreground max-w-3xl">
             Este site não é afiliado ao Facebook ou a qualquer entidade do Facebook. Depois que você sair do Facebook, a responsabilidade não é deles e sim do nosso site. Fazemos todos os esforços para indicar claramente e mostrar todas as provas do produto e usamos resultados reais.
