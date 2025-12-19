@@ -151,7 +151,7 @@ export default function Home() {
                 align: "start",
                 loop: true,
               }}
-              className="w-full max-w-xs sm:max-w-xl md:max-w-4xl mx-auto mt-10 md:mt-12"
+              className="w-full max-w-xs sm:max-w-xl md:max-w-4xl lg:max-w-6xl mx-auto mt-10 md:mt-12"
             >
               <CarouselContent>
                 {testimonials.map((testimonial, index) => (
