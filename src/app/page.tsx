@@ -1,9 +1,8 @@
 import Image from 'next/image';
-import { Baby, Carrot, ChefHat, Heart, Sparkles, UtensilsCrossed } from 'lucide-react';
+import { Baby, Carrot, ChefHat, Heart, UtensilsCrossed } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { RecipeGenerator } from '@/components/recipe-generator';
 import { testimonials, faqs } from '@/lib/content';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { BabyBitesLogo } from '@/components/icons';
@@ -63,22 +62,6 @@ export default function Home() {
               </Button>
               <p className="mt-4 text-sm text-slate-400">Pagamento Único • Acesso Vitalício • 7 Dias de Garantia</p>
             </div>
-          </div>
-        </section>
-
-        {/* AI Generator Section */}
-        <section id="generator" className="py-16 md:py-28 bg-card border-y">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="inline-block bg-accent/20 p-3 rounded-full mb-4">
-              <Sparkles className="h-8 w-8 md:h-10 md:w-10 text-accent" />
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
-              Crie Receitas na Hora com Nossa IA
-            </h2>
-            <p className="mt-4 max-w-3xl mx-auto text-base md:text-lg text-muted-foreground">
-              Sem ideias para o jantar? Informe os ingredientes que você tem e a idade do seu bebê. Nossa inteligência artificial cria uma receita deliciosa e segura para você.
-            </p>
-            <RecipeGenerator />
           </div>
         </section>
 
@@ -237,5 +220,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
