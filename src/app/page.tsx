@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Baby, Carrot, ChefHat, Heart, UtensilsCrossed, CheckCircle2, HelpCircle, Flame, ShieldCheck, ListChecks, BookOpenCheck, Snowflake, ShieldAlert, BrainCircuit, Sparkles, Star, Salad, ClipboardCheck, Clock, Smile, Instagram } from 'lucide-react';
+import { Baby, Carrot, ChefHat, Heart, UtensilsCrossed, CheckCircle2, HelpCircle, Flame, ShieldCheck, ListChecks, BookOpenCheck, Snowflake, ShieldAlert, BrainCircuit, Sparkles, Star, Salad, ClipboardCheck, Clock, Smile, Instagram, BadgeCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -64,6 +64,23 @@ export default function Home() {
               <p className="mt-4 text-sm text-slate-400">Pagamento Único • Acesso Vitalício • 7 Dias de Garantia</p>
               <p className="mt-2 text-sm font-semibold text-white">Oferta válida por poucos dias!</p>
               <p className="text-sm text-slate-300">Acesso imediato após a compra</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Social Proof Section */}
+        <section className="bg-secondary/30 py-4">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8 text-center">
+              <div className="flex items-center gap-2">
+                <BadgeCheck className="h-6 w-6 text-blue-500" />
+                <span className="font-semibold text-foreground">Com mais de 170 mil seguidores</span>
+              </div>
+              <div className="hidden sm:block h-6 w-px bg-border"></div>
+              <div className="flex items-center gap-2">
+                <Heart className="h-5 w-5 text-primary" />
+                <span className="font-semibold text-foreground">Ajudando mais de 10 mil mamães</span>
+              </div>
             </div>
           </div>
         </section>
