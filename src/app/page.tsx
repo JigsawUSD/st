@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Baby, Carrot, ChefHat, Heart, UtensilsCrossed, CheckCircle2 } from 'lucide-react';
+import { Baby, Carrot, ChefHat, Heart, UtensilsCrossed, CheckCircle2, HelpCircle, Flame, ShieldCheck, ListChecks } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -103,6 +103,52 @@ export default function Home() {
                   <p className="text-muted-foreground">Ferramentas e guias para facilitar ainda mais o seu dia a dia.</p>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Pain Points Section */}
+        <section className="py-16 md:py-28 bg-secondary/30">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+            <div className="text-center">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Este material é para você que...</h2>
+              <p className="mt-4 max-w-2xl mx-auto text-base md:text-lg text-muted-foreground">
+                ...quer parar de sofrer com a alimentação do bebê e precisa de uma solução prática, segura e realista.
+              </p>
+            </div>
+            <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+              <Card className="bg-card text-center shadow-lg rounded-2xl p-4">
+                <CardContent className="flex flex-col items-center gap-3 pt-6">
+                  <div className="bg-primary/10 p-3 rounded-full">
+                    <HelpCircle className="h-8 w-8 text-primary" />
+                  </div>
+                  <p className="font-semibold text-lg">Está insegura sobre o que oferecer</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-card text-center shadow-lg rounded-2xl p-4">
+                <CardContent className="flex flex-col items-center gap-3 pt-6">
+                  <div className="bg-primary/10 p-3 rounded-full">
+                    <ListChecks className="h-8 w-8 text-primary" />
+                  </div>
+                  <p className="font-semibold text-lg">Quer refeições saudáveis e práticas</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-card text-center shadow-lg rounded-2xl p-4">
+                <CardContent className="flex flex-col items-center gap-3 pt-6">
+                  <div className="bg-primary/10 p-3 rounded-full">
+                    <ShieldCheck className="h-8 w-8 text-primary" />
+                  </div>
+                  <p className="font-semibold text-lg">Tem medo de engasgos e alergias</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-card text-center shadow-lg rounded-2xl p-4">
+                <CardContent className="flex flex-col items-center gap-3 pt-6">
+                  <div className="bg-primary/10 p-3 rounded-full">
+                    <Flame className="h-8 w-8 text-primary" />
+                  </div>
+                  <p className="font-semibold text-lg">Está cansada de não saber o que fazer</p>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>
