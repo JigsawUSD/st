@@ -345,6 +345,33 @@ export default function Home() {
           </div>
         </section>
 
+        {/* New Guarantee Section */}
+        <section className="py-16 md:py-28 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="bg-card rounded-2xl shadow-xl border p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 md:gap-12">
+              <div className="flex-shrink-0">
+                {guaranteeImage && (
+                  <Image
+                    src={guaranteeImage.imageUrl}
+                    alt={guaranteeImage.description}
+                    width={200}
+                    height={200}
+                    className="mx-auto"
+                    data-ai-hint={guaranteeImage.imageHint}
+                  />
+                )}
+              </div>
+              <div className="text-center md:text-left">
+                <h2 className="text-2xl sm:text-3xl font-bold text-primary">GARANTIA INCONTESTÁVEL DE 7 DIAS</h2>
+                <p className="mt-2 text-lg sm:text-xl font-semibold text-foreground">ZERO RISCO — SÓ BENEFÍCIO!</p>
+                <p className="mt-4 max-w-xl text-base md:text-lg text-muted-foreground">
+                  Se em até 7 dias você não sentir que esse material te ajudou, é só pedir reembolso. Sem perguntas, sem complicações.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* FAQ Section */}
         <section className="py-16 md:py-28">
           <div className="container max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -365,30 +392,20 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Guarantee & Final CTA Section */}
-        <section id="pricing" className="py-16 md:py-28 bg-card border-y">
+        {/* Final CTA Section */}
+        <section id="pricing" className="py-16 md:py-28 bg-slate-900 text-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            {guaranteeImage && (
-              <Image
-                src={guaranteeImage.imageUrl}
-                alt={guaranteeImage.description}
-                width={120}
-                height={120}
-                className="mx-auto"
-                data-ai-hint={guaranteeImage.imageHint}
-              />
-            )}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-6">Sua Satisfação ou seu Dinheiro de Volta</h2>
-            <p className="mt-4 max-w-3xl mx-auto text-base md:text-lg text-muted-foreground">
-              Temos tanta confiança de que você vai amar nossas receitas que oferecemos uma garantia incondicional de 7 dias. Se não ficar 100% satisfeita, devolvemos seu dinheiro. Simples assim.
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">Pronta para transformar a alimentação do seu bebê?</h2>
+            <p className="mt-4 max-w-3xl mx-auto text-lg md:text-xl text-slate-300">
+             Tenha acesso vitalício ao guia completo, bônus exclusivos e a tranquilidade que você merece.
             </p>
-            <div className="mt-12 p-6 sm:p-8 bg-background rounded-2xl shadow-inner max-w-lg mx-auto border">
+            <div className="mt-12 p-6 sm:p-8 bg-card text-foreground rounded-2xl shadow-2xl max-w-lg mx-auto border">
               <p className="text-lg sm:text-xl font-bold text-foreground">Acesso completo por um preço especial de lançamento!</p>
               <div className="my-6 flex flex-col items-center">
                 <span className="text-xl sm:text-2xl font-semibold text-muted-foreground line-through">de R$99,90</span>
                 <span className="text-5xl sm:text-6xl font-bold text-primary">por R$39,90</span>
               </div>
-              <Button size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 text-lg sm:text-xl px-8 py-7 sm:py-8 rounded-full shadow-lg transition-transform transform hover:scale-105">
+              <Button size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 text-lg sm:text-xl px-8 py-7 sm:py-8 rounded-full shadow-lg transition-transform transform hover:scale-105 animate-pulse">
                 Garantir meu Acesso Imediato!
               </Button>
               <p className="mt-4 text-xs sm:text-sm text-muted-foreground">Compra segura e acesso vitalício por pagamento único.</p>
