@@ -362,7 +362,7 @@ export default function Home() {
                 )}
               </div>
               <div className="text-center md:text-left">
-                <h2 className="text-2xl sm:text-3xl font-bold text-primary">GARANTIA INCONTESTÁVEL DE 7 DIAS</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold text-primary">GARANTIA <span className="bg-destructive text-destructive-foreground px-2">INCONTESTÁVEL</span> DE 7 DIAS</h2>
                 <p className="mt-2 text-lg sm:text-xl font-semibold text-foreground">ZERO RISCO — SÓ BENEFÍCIO!</p>
                 <p className="mt-4 max-w-xl text-base md:text-lg text-muted-foreground">
                   Se em até 7 dias você não sentir que esse material te ajudou, é só pedir reembolso. Sem perguntas, sem complicações.
