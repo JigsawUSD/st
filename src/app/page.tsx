@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Baby, Carrot, ChefHat, Heart, UtensilsCrossed, CheckCircle2, HelpCircle, Flame, ShieldCheck, ListChecks, BookOpenCheck, Snowflake, ShieldAlert, BrainCircuit, Sparkles } from 'lucide-react';
+import { Baby, Carrot, ChefHat, Heart, UtensilsCrossed, CheckCircle2, HelpCircle, Flame, ShieldCheck, ListChecks, BookOpenCheck, Snowflake, ShieldAlert, BrainCircuit, Sparkles, Star, Salad, ClipboardCheck, Clock, Smile } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -107,8 +107,60 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Pain Points Section */}
+        {/* What You'll Achieve Section */}
         <section className="py-16 md:py-28 bg-secondary/30">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+            <div className="text-center">
+              <div className="flex justify-center items-center gap-2">
+                <Star className="h-6 w-6 text-yellow-400" />
+                <Star className="h-8 w-8 text-yellow-400" />
+                <Star className="h-6 w-6 text-yellow-400" />
+              </div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-4">O que você vai conquistar com o Crescendo Saudável:</h2>
+            </div>
+            <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <div className="flex items-start gap-4 p-4">
+                <div className="bg-primary/10 p-3 rounded-full">
+                  <Salad className="h-8 w-8 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold">Mais variedade</h3>
+                  <p className="text-muted-foreground mt-1">Fim da monotonia no prato do bebê</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4 p-4">
+                <div className="bg-primary/10 p-3 rounded-full">
+                  <ClipboardCheck className="h-8 w-8 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold">Segurança alimentar</h3>
+                  <p className="text-muted-foreground mt-1">Saiba o que, quando e como oferecer</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4 p-4">
+                <div className="bg-primary/10 p-3 rounded-full">
+                  <Clock className="h-8 w-8 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold">Praticidade</h3>
+                  <p className="text-muted-foreground mt-1">Receitas rápidas que cabem na sua rotina</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4 p-4">
+                <div className="bg-primary/10 p-3 rounded-full">
+                  <Smile className="h-8 w-8 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold">Mais tranquilidade</h3>
+                  <p className="text-muted-foreground mt-1">Sem estresse na hora de comer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Pain Points Section */}
+        <section className="py-16 md:py-28">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
             <div className="text-center">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Este material é para você que...</h2>
@@ -154,7 +206,7 @@ export default function Home() {
         </section>
 
         {/* Bonus Section */}
-        <section className="py-16 md:py-28">
+        <section className="py-16 md:py-28 bg-secondary/30">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
             <div className="text-center">
               <p className="font-bold text-primary">APROVEITE E RECEBA, TOTALMENTE GRÁTIS,</p>
@@ -217,7 +269,7 @@ export default function Home() {
                 </div>
               </Card>
             </div>
-             <div className="mt-12 text-center bg-secondary/30 p-4 rounded-lg">
+             <div className="mt-12 text-center bg-background/70 p-4 rounded-lg">
                 <p className="text-lg text-muted-foreground">Valor total em bônus que você receberá GRÁTIS:</p>
                 <p className="text-3xl font-bold text-primary mt-1">R$ 114,00</p>
             </div>
