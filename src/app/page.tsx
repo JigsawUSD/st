@@ -35,35 +35,34 @@ export default function Home() {
       </header>
 
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative text-center py-20 md:py-32 overflow-hidden">
-          {heroImage && (
-            <Image
-              src={heroImage.imageUrl}
-              alt={heroImage.description}
-              fill
-              className="object-cover object-center z-0 opacity-10"
-              priority
-              data-ai-hint={heroImage.imageHint}
-            />
-          )}
-          <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground leading-tight">
-              A Solução Completa para a Alimentação do seu Bebê
+        {/* VSL Section */}
+        <section className="bg-slate-900 py-12 md:py-20 text-center">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
+              A Solução Definitiva para a Alimentação do seu Bebê
             </h1>
-            <p className="mt-6 max-w-3xl mx-auto text-base sm:text-lg md:text-xl text-foreground/80">
-              Chega de dúvidas na hora de cozinhar! Tenha acesso a um livro de receitas exclusivo e um gerador com IA para criar pratos saudáveis e deliciosos em segundos.
+            <p className="mt-4 max-w-3xl mx-auto text-lg md:text-xl text-slate-300">
+              Assista ao vídeo abaixo e descubra como tornar as refeições mais fáceis e nutritivas.
             </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
-              <Button size="lg" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 text-base sm:text-lg px-8 sm:px-10 py-6 sm:py-7 rounded-full shadow-xl transition-transform transform hover:scale-105 w-full sm:w-auto">
-                <a href="#pricing">Quero Refeições Fáceis e Saudáveis</a>
-              </Button>
-              <div className="text-left bg-white/70 backdrop-blur-sm p-3 rounded-lg shadow-md mt-2 sm:mt-0">
-                <p className="font-semibold text-base text-foreground/70 line-through">de R$99,90</p>
-                <p className="font-bold text-3xl sm:text-4xl text-primary">por R$39,90</p>
+            <div className="mt-8 max-w-4xl mx-auto">
+              <div className="aspect-video bg-black rounded-lg shadow-2xl overflow-hidden">
+                {/* Responsive Embed for Video */}
+                <iframe
+                  className="w-full h-full"
+                  src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=LbfL1tWc-C3hY_aF"
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                ></iframe>
               </div>
             </div>
-            <p className="mt-6 text-xs sm:text-sm text-foreground/60">Pagamento Único • Acesso Vitalício • 7 Dias de Garantia</p>
+            <div className="mt-10">
+              <Button size="lg" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg sm:text-xl px-10 py-7 rounded-full shadow-xl transition-transform transform hover:scale-105 animate-pulse">
+                <a href="#pricing">QUERO ACESSO IMEDIATO POR R$39,90</a>
+              </Button>
+              <p className="mt-4 text-sm text-slate-400">Pagamento Único • Acesso Vitalício • 7 Dias de Garantia</p>
+            </div>
           </div>
         </section>
 
