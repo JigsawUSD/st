@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Baby, Carrot, ChefHat, Heart, UtensilsCrossed, CheckCircle2, HelpCircle, Flame, ShieldCheck, ListChecks } from 'lucide-react';
+import { Baby, Carrot, ChefHat, Heart, UtensilsCrossed, CheckCircle2, HelpCircle, Flame, ShieldCheck, ListChecks, BookOpenCheck, Snowflake, ShieldAlert, BrainCircuit, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -149,6 +149,77 @@ export default function Home() {
                   <p className="font-semibold text-lg">Está cansada de não saber o que fazer</p>
                 </CardContent>
               </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Bonus Section */}
+        <section className="py-16 md:py-28">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+            <div className="text-center">
+              <p className="font-bold text-primary">APROVEITE E RECEBA, TOTALMENTE GRÁTIS,</p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-2">+ 5 BÔNUS INCRÍVEIS!</h2>
+            </div>
+            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Bonus 1 */}
+              <Card className="flex flex-col sm:flex-row items-start gap-4 p-5 rounded-2xl shadow-lg border-l-4 border-primary">
+                <div className="bg-primary/10 p-3 rounded-full shrink-0">
+                  <BookOpenCheck className="h-8 w-8 text-primary" />
+                </div>
+                <div>
+                  <CardTitle className="text-lg">Guia Ilustrado Completo sobre Introdução Alimentar</CardTitle>
+                  <CardDescription className="mt-1 text-sm">Tudo que você precisa saber para iniciar com segurança, com imagens e orientações práticas.</CardDescription>
+                  <p className="text-xs font-semibold text-primary/80 mt-2 line-through">Valor: R$ 29,00</p>
+                </div>
+              </Card>
+              {/* Bonus 2 */}
+              <Card className="flex flex-col sm:flex-row items-start gap-4 p-5 rounded-2xl shadow-lg border-l-4 border-primary">
+                <div className="bg-primary/10 p-3 rounded-full shrink-0">
+                  <Snowflake className="h-8 w-8 text-primary" />
+                </div>
+                <div>
+                  <CardTitle className="text-lg">Dicas para congelamento e descongelamento</CardTitle>
+                  <CardDescription className="mt-1 text-sm">Economize tempo com segurança e organização ao preparar as refeições do seu bebê.</CardDescription>
+                   <p className="text-xs font-semibold text-primary/80 mt-2 line-through">Valor: R$ 17,00</p>
+                </div>
+              </Card>
+              {/* Bonus 3 */}
+              <Card className="flex flex-col sm:flex-row items-start gap-4 p-5 rounded-2xl shadow-lg border-l-4 border-primary">
+                <div className="bg-primary/10 p-3 rounded-full shrink-0">
+                  <ShieldAlert className="h-8 w-8 text-primary" />
+                </div>
+                <div>
+                  <CardTitle className="text-lg">Alimentos alergênicos e a janela imunológica</CardTitle>
+                  <CardDescription className="mt-1 text-sm">Aprenda como oferecer alimentos potencialmente alergênicos sem medo.</CardDescription>
+                   <p className="text-xs font-semibold text-primary/80 mt-2 line-through">Valor: R$ 22,00</p>
+                </div>
+              </Card>
+              {/* Bonus 4 */}
+              <Card className="flex flex-col sm:flex-row items-start gap-4 p-5 rounded-2xl shadow-lg border-l-4 border-primary">
+                <div className="bg-primary/10 p-3 rounded-full shrink-0">
+                  <BrainCircuit className="h-8 w-8 text-primary" />
+                </div>
+                <div>
+                  <CardTitle className="text-lg">Estratégias para bebês que não querem comer</CardTitle>
+                  <CardDescription className="mt-1 text-sm">Soluções práticas e testadas para lidar com recusas alimentares sem estresse.</CardDescription>
+                   <p className="text-xs font-semibold text-primary/80 mt-2 line-through">Valor: R$ 27,00</p>
+                </div>
+              </Card>
+              {/* Bonus 5 */}
+               <Card className="flex flex-col sm:flex-row items-start gap-4 p-5 rounded-2xl shadow-lg border-l-4 border-primary md:col-span-2">
+                <div className="bg-primary/10 p-3 rounded-full shrink-0">
+                  <Sparkles className="h-8 w-8 text-primary" />
+                </div>
+                <div>
+                  <CardTitle className="text-lg">Inspirações de pratinhos</CardTitle>
+                  <CardDescription className="mt-1 text-sm">Ideias visuais para montar pratos lindos, nutritivos e atrativos para cada fase do bebê.</CardDescription>
+                  <p className="text-xs font-semibold text-primary/80 mt-2 line-through">Valor: R$ 19,00</p>
+                </div>
+              </Card>
+            </div>
+             <div className="mt-12 text-center bg-secondary/30 p-4 rounded-lg">
+                <p className="text-lg text-muted-foreground">Valor total em bônus que você receberá GRÁTIS:</p>
+                <p className="text-3xl font-bold text-primary mt-1">R$ 114,00</p>
             </div>
           </div>
         </section>
