@@ -4,7 +4,7 @@ import { useFormState, useFormStatus } from 'react-dom';
 import { useEffect } from 'react';
 import { generateRecipeAction } from '@/app/actions';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
@@ -22,15 +22,15 @@ function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
-    <Button type="submit" disabled={pending} size="lg" className="w-full md:w-auto bg-accent text-accent-foreground hover:bg-accent/90 shadow-md">
+    <Button type="submit" disabled={pending} size="lg" className="w-full md:w-auto bg-accent text-accent-foreground hover:bg-accent/90 shadow-md transition-transform transform hover:scale-105 rounded-full text-base py-6">
       {pending ? (
         <>
-          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
           Gerando Receita...
         </>
       ) : (
         <>
-          <Sparkles className="mr-2 h-4 w-4" />
+          <Sparkles className="mr-2 h-5 w-5" />
           Gerar Receita Mágica
         </>
       )}
@@ -41,6 +41,7 @@ function SubmitButton() {
 export function RecipeGenerator() {
   const [state, formAction] = useFormState(generateRecipeAction, initialState);
   const { toast } = useToast();
+  const { pending } = useFormStatus();
 
   useEffect(() => {
     if (!state.success && state.error) {
@@ -54,27 +55,27 @@ export function RecipeGenerator() {
 
   return (
     <div className="mt-12 max-w-4xl mx-auto">
-      <Card className="shadow-xl border-2 border-primary/20">
+      <Card className="shadow-xl border-2 border-primary/10 rounded-2xl">
         <form action={formAction}>
           <CardContent className="p-6 md:p-8">
-            <div className="grid md:grid-cols-2 gap-6 items-start">
-              <div className="space-y-4">
-                <div>
-                  <Label htmlFor="ingredients" className="text-lg font-medium">Ingredientes Disponíveis</Label>
-                  <p className="text-sm text-muted-foreground mb-2">Liste os ingredientes que você tem em casa, separados por vírgula.</p>
+            <div className="grid md:grid-cols-2 gap-8 items-start">
+              <div className="space-y-6">
+                <div className="text-left">
+                  <Label htmlFor="ingredients" className="text-lg font-semibold">Ingredientes Disponíveis</Label>
+                  <p className="text-sm text-muted-foreground mt-1 mb-2">Liste os ingredientes que você tem em casa, separados por vírgula.</p>
                   <Textarea
                     id="ingredients"
                     name="ingredients"
                     placeholder="Ex: banana, aveia, maçã, cenoura..."
-                    className="min-h-[120px] text-base"
+                    className="min-h-[120px] text-base rounded-lg"
                     required
                   />
                 </div>
-                <div>
-                  <Label htmlFor="babyAgeMonths" className="text-lg font-medium">Idade do Bebê (meses)</Label>
-                   <p className="text-sm text-muted-foreground mb-2">Selecione a idade do seu bebê para garantir uma receita segura.</p>
+                <div className="text-left">
+                  <Label htmlFor="babyAgeMonths" className="text-lg font-semibold">Idade do Bebê (meses)</Label>
+                   <p className="text-sm text-muted-foreground mt-1 mb-2">Selecione a idade do seu bebê para garantir uma receita segura.</p>
                   <Select name="babyAgeMonths" defaultValue="6" required>
-                    <SelectTrigger className="w-full text-base h-12">
+                    <SelectTrigger className="w-full text-base h-12 rounded-lg">
                       <SelectValue placeholder="Selecione a idade" />
                     </SelectTrigger>
                     <SelectContent>
@@ -88,43 +89,43 @@ export function RecipeGenerator() {
                 </div>
               </div>
 
-              <div className="bg-primary/5 rounded-lg p-6 min-h-[200px] border border-dashed border-primary/20">
-                <h3 className="text-lg font-semibold text-primary-foreground flex items-center gap-2">
-                  <ChefHat className="h-6 w-6" />
+              <div className="bg-primary/5 rounded-lg p-6 min-h-[300px] border border-dashed border-primary/20 flex flex-col">
+                <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
+                  <ChefHat className="h-6 w-6 text-primary" />
                   Sua Receita Personalizada
                 </h3>
-                 {useFormStatus().pending ? (
-                   <div className="space-y-4 mt-4">
-                    <Skeleton className="h-6 w-3/4" />
-                    <Skeleton className="h-4 w-full" />
-                    <Skeleton className="h-4 w-5/6" />
-                    <Skeleton className="h-4 w-full" />
+                 {pending ? (
+                   <div className="space-y-4 mt-4 flex-1">
+                    <Skeleton className="h-6 w-3/4 bg-primary/10" />
+                    <Skeleton className="h-4 w-full bg-primary/10" />
+                    <Skeleton className="h-4 w-5/6 bg-primary/10" />
+                    <Skeleton className="h-4 w-full bg-primary/10" />
                   </div>
                  ) : state.success && state.data ? (
-                  <div className="mt-4 text-left space-y-4 text-sm text-foreground/80">
-                    <h4 className="text-xl font-bold text-accent">{state.data.recipeName}</h4>
+                  <div className="mt-4 text-left space-y-4 text-sm text-foreground/90 flex-1">
+                    <h4 className="text-xl font-bold text-primary">{state.data.recipeName}</h4>
                     <div>
-                      <h5 className="font-semibold text-foreground/90">Ingredientes:</h5>
-                      <p className="whitespace-pre-wrap">{state.data.ingredients}</p>
+                      <h5 className="font-semibold text-foreground">Ingredientes:</h5>
+                      <p className="whitespace-pre-wrap text-muted-foreground">{state.data.ingredients}</p>
                     </div>
                     <div>
-                      <h5 className="font-semibold text-foreground/90">Instruções:</h5>
-                      <p className="whitespace-pre-wrap">{state.data.instructions}</p>
+                      <h5 className="font-semibold text-foreground">Instruções:</h5>
+                      <p className="whitespace-pre-wrap text-muted-foreground">{state.data.instructions}</p>
                     </div>
                     <div>
-                      <h5 className="font-semibold text-foreground/90">Recomendação de Idade:</h5>
-                      <p className="whitespace-pre-wrap">{state.data.ageAppropriateness}</p>
+                      <h5 className="font-semibold text-foreground">Recomendação de Idade:</h5>
+                      <p className="whitespace-pre-wrap text-muted-foreground">{state.data.ageAppropriateness}</p>
                     </div>
                   </div>
                 ) : (
-                  <div className="flex flex-col items-center justify-center h-48 text-muted-foreground text-center">
-                    <p>Sua receita gerada por IA aparecerá aqui!</p>
+                  <div className="flex flex-col items-center justify-center flex-1 text-muted-foreground text-center">
+                    <p className="text-base">Sua receita gerada por IA aparecerá aqui!</p>
                   </div>
                 )}
               </div>
             </div>
           </CardContent>
-          <CardFooter className="bg-background/50 p-6 flex justify-center">
+          <CardFooter className="bg-card p-6 flex justify-center border-t">
             <SubmitButton />
           </CardFooter>
         </form>
