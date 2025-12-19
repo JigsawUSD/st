@@ -6,6 +6,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { testimonials, faqs } from '@/lib/content';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { BabyBitesLogo } from '@/components/icons';
+import { RecipeGenerator } from '@/components/recipe-generator';
 
 const findImage = (id: string) => PlaceHolderImages.find(img => img.id === id);
 
@@ -67,43 +68,14 @@ export default function Home() {
           </div>
         </section>
 
-        {/* New Content Section */}
+        {/* AI Recipe Generator Section */}
         <section className="py-16 md:py-28">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl text-center">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">A solução completa para alimentar seu bebê com saúde e praticidade</h2>
-            <p className="mt-4 text-base md:text-lg text-muted-foreground">
-              Criado por uma mãe pesquisadora que já passou pelas suas dúvidas e reuniu tudo o que você precisa — sem enrolação, sem medo de errar.
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Crie Receitas na Hora com Inteligência Artificial</h2>
+            <p className="mt-4 max-w-3xl mx-auto text-base md:text-lg text-muted-foreground">
+              Sem ideias para a próxima refeição? Diga-nos quais ingredientes você tem e a idade do seu bebê, e nossa IA criará uma receita deliciosa e segura em segundos!
             </p>
-            <div className="mt-10 md:mt-12 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 text-left">
-              <div className="flex items-start gap-4 p-4 rounded-lg">
-                <CheckCircle2 className="h-6 w-6 text-primary mt-1 shrink-0" />
-                <div>
-                  <h3 className="text-lg font-semibold">Refeições completas</h3>
-                  <p className="text-muted-foreground">A partir dos 6 meses, com todos os nutrientes que seu bebê precisa.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4 p-4 rounded-lg">
-                <CheckCircle2 className="h-6 w-6 text-primary mt-1 shrink-0" />
-                <div>
-                  <h3 className="text-lg font-semibold">Receitas validadas</h3>
-                  <p className="text-muted-foreground">Simples, nutritivas e testadas por milhares de famílias.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4 p-4 rounded-lg">
-                <CheckCircle2 className="h-6 w-6 text-primary mt-1 shrink-0" />
-                <div>
-                  <h3 className="text-lg font-semibold">Orientação clara</h3>
-                  <p className="text-muted-foreground">Acompanhamento por faixas etárias para você se sentir segura.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4 p-4 rounded-lg">
-                <CheckCircle2 className="h-6 w-6 text-primary mt-1 shrink-0" />
-                <div>
-                  <h3 className="text-lg font-semibold">Bônus exclusivos</h3>
-                  <p className="text-muted-foreground">Ferramentas e guias para facilitar ainda mais o seu dia a dia.</p>
-                </div>
-              </div>
-            </div>
+            <RecipeGenerator />
           </div>
         </section>
 
