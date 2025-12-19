@@ -415,9 +415,9 @@ export default function Home() {
       </main>
 
       <footer className="bg-card border-t mt-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-          <BabyBitesLogo className="text-primary" />
-          <p className="text-xs sm:text-sm text-muted-foreground">&copy; {new Date().getFullYear()} Baby Bites Hub. Todos os direitos reservados.</p>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col justify-center items-center gap-2 text-center">
+          <p className="text-xs sm:text-sm text-muted-foreground">COPYRIGHT © {new Date().getFullYear()}</p>
+          <p className="text-xs sm:text-sm text-muted-foreground">TODOS OS DIREITOS RESERVADOS A CRESCENDO SAUDÁVEL.</p>
         </div>
       </footer>
     </div>

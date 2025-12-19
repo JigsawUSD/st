@@ -7,7 +7,7 @@ export const BabyBitesLogo = (props: HTMLAttributes<HTMLDivElement>) => (
        <UtensilsCrossed className="h-6 w-6 text-primary" />
     </div>
     <span className="text-2xl font-bold text-foreground">
-      Baby Bites Hub
+      Crescendo Saudável
     </span>
   </div>
 );
