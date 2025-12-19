@@ -221,6 +221,11 @@ export default function Home() {
                 <p className="text-lg text-muted-foreground">Valor total em bônus que você receberá GRÁTIS:</p>
                 <p className="text-3xl font-bold text-primary mt-1">R$ 114,00</p>
             </div>
+            <div className="mt-12 text-center">
+              <Button size="lg" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg sm:text-xl px-10 py-7 rounded-full shadow-xl transition-transform transform hover:scale-105 animate-pulse">
+                <a href="#pricing">Não perca essa oportunidade</a>
+              </Button>
+            </div>
           </div>
         </section>
 
