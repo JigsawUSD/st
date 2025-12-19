@@ -18,19 +18,41 @@ export const testimonials = [
 
 export const faqs = [
   {
-    question: 'A compra é segura?',
-    answer: 'Sim, 100% segura. Usamos as melhores plataformas de pagamento do mercado para garantir a segurança dos seus dados.',
+    question: 'Como vou receber meu guia?',
+    answer:
+      "Você terá acesso instantâneo a uma versão em PDF deste guia. O acesso chegará no seu e-mail imediatamente após a confirmação do pagamento. O conteúdo será acessado ou baixado através de um computador, celular, tablet ou outro dispositivo digital. Você também pode acessar o produto comprado, nesta página:\n\n01 - Faça login na Hotmart clicando em 'Entrar'\n02 - Acesse o menu lateral, clique em 'Minha conta'\n03 - Clique em 'Minhas compras' e lá estarão todos os produtos que você já comprou!",
   },
   {
-    question: 'Como recebo o acesso?',
-    answer: 'O acesso é imediato após a confirmação do pagamento. Você receberá um e-mail com todas as instruções para acessar nosso catálogo de receitas e o gerador de IA.',
+    question: 'O que acontece após o pagamento?',
+    answer:
+      'Após a confirmação do pagamento, você recebe um e-mail com o link para acessar todo o conteúdo. É tudo digital e imediato, sem precisar esperar nada chegar pelo correio. Em poucos minutos você já pode começar! Você também pode baixar o aplicativo da Hotmart e acessar por lá.',
   },
   {
-    question: 'E se eu não gostar?',
-    answer: 'Não se preocupe! Oferecemos uma garantia de 7 dias. Se você não ficar satisfeita por qualquer motivo, basta nos enviar um e-mail e nós devolveremos 100% do seu dinheiro.',
+    question: 'Quais são as formas de pagamento?',
+    answer:
+      'O pagamento pode ser feito, via cartão de crédito, PIX, PayPal, Cartão Virtual e boleto.\nObs. Comprando no boleto, você receberá o acesso assim que compensar o pagamento (até 3 dias úteis).',
   },
   {
-    question: 'As receitas são apropriadas para todas as idades?',
-    answer: 'Nosso catálogo inclui filtros por idade para garantir que você ofereça a comida certa para cada fase do seu bebê. Nosso gerador de IA também leva em conta a idade para criar receitas seguras.',
+    question: 'Preciso saber cozinhar?',
+    answer:
+      'De jeito nenhum! As receitas são simples, práticas e pensadas para o dia a dia de mães reais. Mesmo quem nunca teve muita intimidade com a cozinha consegue seguir com facilidade — e ainda se surpreender com o resultado.',
+  },
+  {
+    question: 'Posso parcelar a compra?',
+    answer: 'No cartão o valor pode ser parcelado em até 4x. No PIX a liberação do acesso é IMEDIATA.',
+  },
+  {
+    question: 'Como faço para comprar?',
+    answer: 'Para comprar este Ebook, clique no botão “Comprar agora”.',
+  },
+  {
+    question: 'Esse conteúdo é indicado para qual idade?',
+    answer:
+      'O conteúdo foi pensado para bebês a partir dos 6 meses, quando se inicia a introdução de alimentos sólidos. Não tem idade máxima, é para toda família.',
+  },
+  {
+    question: 'Posso acessar pelo celular?',
+    answer:
+      'Sim! O material é totalmente digital e funciona perfeitamente no celular, tablet e computador. Você poderá abrir, consultar e até marcar suas receitas favoritas sempre que quiser — com acesso imediato após a compra.',
   },
 ];
