@@ -415,9 +415,11 @@ export default function Home() {
       </main>
 
       <footer className="bg-card border-t mt-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col justify-center items-center gap-2 text-center">
-          <p className="text-xs sm:text-sm text-muted-foreground">COPYRIGHT © {new Date().getFullYear()}</p>
-          <p className="text-xs sm:text-sm text-muted-foreground">TODOS OS DIREITOS RESERVADOS A CRESCENDO SAUDÁVEL.</p>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col justify-center items-center gap-4 text-center">
+          <p className="text-sm text-muted-foreground">COPYRIGHT © {new Date().getFullYear()} | TODOS OS DIREITOS RESERVADOS A CRESCENDO SAUDÁVEL.</p>
+          <p className="text-xs text-muted-foreground max-w-3xl">
+            Este site não é afiliado ao Facebook ou a qualquer entidade do Facebook. Depois que você sair do Facebook, a responsabilidade não é deles e sim do nosso site. Fazemos todos os esforços para indicar claramente e mostrar todas as provas do produto e usamos resultados reais.
+          </p>
         </div>
       </footer>
     </div>
