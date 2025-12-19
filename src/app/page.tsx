@@ -13,6 +13,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import { RecipeGenerator } from '@/components/recipe-generator';
 
 const findImage = (id: string) => PlaceHolderImages.find(img => img.id === id);
 
@@ -80,7 +81,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-
+        
         {/* Social Proof Section */}
         <section className="bg-secondary/30 py-4">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -98,8 +99,48 @@ export default function Home() {
           </div>
         </section>
         
-        {/* Testimonials Section */}
+        {/* Sentimental Carousel Section */}
         <section className="py-16 md:py-24">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Momentos que Alimentam a Alma</h2>
+            <p className="mt-4 max-w-3xl mx-auto text-base md:text-lg text-muted-foreground">
+              Veja a alegria de famílias que transformaram a hora da refeição em momentos de pura felicidade e conexão.
+            </p>
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full max-w-xs sm:max-w-xl md:max-w-4xl lg:max-w-6xl mx-auto mt-10 md:mt-12"
+            >
+              <CarouselContent>
+                {sentimentalImages.map((img, index) => img && (
+                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                    <div className="p-1 h-full">
+                       <Card className="overflow-hidden shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl rounded-lg md:rounded-2xl h-full">
+                         <CardContent className="p-0 h-full">
+                          <Image
+                            src={img.imageUrl}
+                            alt={img.description}
+                            width={400}
+                            height={400}
+                            className="object-cover w-full h-full aspect-square"
+                            data-ai-hint={img.imageHint}
+                          />
+                         </CardContent>
+                       </Card>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden sm:flex" />
+              <CarouselNext className="hidden sm:flex" />
+            </Carousel>
+          </div>
+        </section>
+
+        {/* Testimonials Section */}
+        <section className="py-16 md:py-24 bg-secondary/30">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">O que as Mamães Estão Dizendo</h2>
             <p className="mt-4 max-w-3xl mx-auto text-base md:text-lg text-muted-foreground">
@@ -114,8 +155,8 @@ export default function Home() {
             >
               <CarouselContent>
                 {testimonials.map((testimonial, index) => (
-                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                    <div className="p-1 h-full">
+                  <CarouselItem key={index} className="sm:basis-1/2 lg:basis-1/3 flex">
+                    <div className="p-1 flex-1">
                       <Card className="flex flex-col h-full text-left shadow-lg bg-card rounded-2xl">
                         <CardHeader className="flex-row gap-4 items-center">
                           {testimonialImages[index] && (
@@ -148,7 +189,7 @@ export default function Home() {
         </section>
 
         {/* What You'll Achieve Section */}
-        <section className="py-16 md:py-24 bg-secondary/30">
+        <section className="py-16 md:py-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
             <div className="text-center">
               <div className="flex justify-center items-center gap-2">
@@ -200,7 +241,7 @@ export default function Home() {
         </section>
 
         {/* Pain Points Section */}
-        <section className="py-16 md:py-24">
+        <section className="py-16 md:py-24 bg-secondary/30">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
             <div className="text-center">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Este material é para você que...</h2>
@@ -243,6 +284,20 @@ export default function Home() {
               </Card>
             </div>
           </div>
+        </section>
+
+        {/* AI Recipe Generator Section */}
+        <section className="py-16 md:py-24">
+           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+             <div className="text-center">
+               <p className="font-bold text-accent">FERRAMENTA EXCLUSIVA</p>
+               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-2">Crie Receitas na Hora com IA!</h2>
+               <p className="mt-4 max-w-3xl mx-auto text-base md:text-lg text-muted-foreground">
+                 Não sabe o que cozinhar com o que tem na geladeira? Nossa inteligência artificial cria uma receita saudável e segura para o seu bebê em segundos.
+               </p>
+             </div>
+             <RecipeGenerator />
+           </div>
         </section>
 
         {/* Bonus Section */}
@@ -364,7 +419,7 @@ export default function Home() {
                 )}
               </div>
               <div className="text-center md:text-left">
-                <h2 className="text-2xl sm:text-3xl font-bold text-primary">GARANTIA <span className="bg-destructive text-destructive-foreground px-2">INCONTESTÁVEL</span> DE 7 DIAS</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold text-primary">GARANTIA <span className="bg-destructive text-destructive-foreground px-2 rounded">INCONTESTÁVEL</span> DE 7 DIAS</h2>
                 <p className="mt-2 text-lg sm:text-xl font-semibold text-foreground">ZERO RISCO — SÓ BENEFÍCIO!</p>
                 <p className="mt-4 max-w-xl text-base md:text-lg text-muted-foreground">
                   Se em até 7 dias você não sentir que esse material te ajudou, é só pedir reembolso. Sem perguntas, sem complicações.
@@ -431,3 +486,5 @@ export default function Home() {
     </div>
   );
 }
+
+    
