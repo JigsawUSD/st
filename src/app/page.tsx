@@ -6,7 +6,13 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { testimonials, faqs } from '@/lib/content';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { BabyBitesLogo } from '@/components/icons';
-import { RecipeGenerator } from '@/components/recipe-generator';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
 
 const findImage = (id: string) => PlaceHolderImages.find(img => img.id === id);
 
@@ -23,6 +29,13 @@ export default function Home() {
     findImage('testimonial1'),
     findImage('testimonial2'),
     findImage('testimonial3'),
+  ].filter(Boolean);
+  const sentimentalImages = [
+    findImage('sentimental1'),
+    findImage('sentimental2'),
+    findImage('sentimental3'),
+    findImage('sentimental4'),
+    findImage('sentimental5'),
   ].filter(Boolean);
 
   return (
@@ -84,15 +97,44 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        {/* AI Recipe Generator Section */}
+        
+        {/* Sentimental Carousel */}
         <section className="py-16 md:py-28">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Crie Receitas na Hora com Inteligência Artificial</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Momentos que Alimentam a Alma</h2>
             <p className="mt-4 max-w-3xl mx-auto text-base md:text-lg text-muted-foreground">
-              Sem ideias para a próxima refeição? Diga-nos quais ingredientes você tem e a idade do seu bebê, e nossa IA criará uma receita deliciosa e segura em segundos!
+              Veja a alegria de famílias que transformaram a hora da refeição em momentos de pura felicidade e conexão.
             </p>
-            <RecipeGenerator />
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full max-w-4xl mx-auto mt-12"
+            >
+              <CarouselContent>
+                {sentimentalImages.map((img, index) => img && (
+                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                    <div className="p-1">
+                      <Card className="overflow-hidden shadow-lg rounded-xl md:rounded-2xl">
+                        <CardContent className="p-0">
+                           <Image
+                            src={img.imageUrl}
+                            alt={img.description}
+                            width={400}
+                            height={400}
+                            className="object-cover w-full h-full aspect-square"
+                            data-ai-hint={img.imageHint}
+                          />
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden sm:flex" />
+              <CarouselNext className="hidden sm:flex" />
+            </Carousel>
           </div>
         </section>
 
@@ -418,3 +460,5 @@ export default function Home() {
     </div>
   );
 }
+
+    

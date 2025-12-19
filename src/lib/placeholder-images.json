@@ -53,6 +53,36 @@
       "description": "A 7-day money-back guarantee seal.",
       "imageUrl": "https://static-media.hotmart.com/x8Tk1rXgB5ou7aK9SvxuHU8HWj0=/filters:quality(100)/klickart-prod/uploads/media/file/8707075/selo-7-dias.webp",
       "imageHint": "guarantee seal"
+    },
+    {
+      "id": "sentimental1",
+      "description": "A baby happily eating broccoli.",
+      "imageUrl": "https://images.unsplash.com/photo-1519687981242-432b13161042?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxiYWJ5JTIwZWF0aW5nJTIwYnJvY2NvbGl8ZW58MHx8fHwxNzY2MTY5OTU4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "baby eating"
+    },
+    {
+      "id": "sentimental2",
+      "description": "A happy family having a meal together.",
+      "imageUrl": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxoYXBweSUyMGZhbWlseSUyMG1lYWx8ZW58MHx8fHwxNzY2MTcwMDAyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "family meal"
+    },
+    {
+      "id": "sentimental3",
+      "description": "A smiling baby with food on their face.",
+      "imageUrl": "https://images.unsplash.com/photo-1520699499141-5364b387c385?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtZXNzeSUyMGJhYnklMjBlYXRpbmd8ZW58MHx8fHwxNzY2MTcwMDIzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "messy baby"
+    },
+    {
+      "id": "sentimental4",
+      "description": "A mother feeding her child.",
+      "imageUrl": "https://images.unsplash.com/photo-1546069901-d5bfd2cbfb1f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxoZWFsdGh5JTIwZm9vZHxlbnwwfHx8fDE3NjYxNzAwNDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "healthy food"
+    },
+    {
+      "id": "sentimental5",
+      "description": "A father and son cooking together.",
+      "imageUrl": "https://images.unsplash.com/photo-1571167929252-4a7a97b2d5a3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxmYXRoZXIlMjBjb29raW5nJTIwd2l0aCUyMGNoaWxkfGVufDB8fHx8MTc2NjE3MDEwMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "father cooking"
     }
   ]
 }
