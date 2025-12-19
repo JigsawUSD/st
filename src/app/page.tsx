@@ -36,6 +36,7 @@ export default function Home() {
     findImage('sentimental3'),
     findImage('sentimental4'),
     findImage('sentimental5'),
+    findImage('sentimental6'),
   ].filter(Boolean);
 
   return (
@@ -471,3 +472,4 @@ export default function Home() {
     </div>
   );
 }
+    
