@@ -13,7 +13,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import { RecipeGenerator } from '@/components/recipe-generator';
 
 const findImage = (id: string) => PlaceHolderImages.find(img => img.id === id);
 
@@ -286,20 +285,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* AI Recipe Generator Section */}
-        <section className="py-16 md:py-24">
-           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-             <div className="text-center">
-               <p className="font-bold text-accent">FERRAMENTA EXCLUSIVA</p>
-               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-2">Crie Receitas na Hora com IA!</h2>
-               <p className="mt-4 max-w-3xl mx-auto text-base md:text-lg text-muted-foreground">
-                 Não sabe o que cozinhar com o que tem na geladeira? Nossa inteligência artificial cria uma receita saudável e segura para o seu bebê em segundos.
-               </p>
-             </div>
-             <RecipeGenerator />
-           </div>
-        </section>
-
         {/* Bonus Section */}
         <section className="py-16 md:py-24 bg-secondary/30">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
@@ -486,5 +471,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
