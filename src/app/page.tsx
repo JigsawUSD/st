@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Baby, Carrot, ChefHat, Heart, UtensilsCrossed } from 'lucide-react';
+import { Baby, Carrot, ChefHat, Heart, UtensilsCrossed, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -65,31 +65,41 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Features Section */}
+        {/* New Content Section */}
         <section className="py-16 md:py-28">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-10 md:mb-12">Tudo que você precisa para refeições incríveis</h2>
-            <div className="grid md:grid-cols-3 gap-8 md:gap-10 text-center">
-              <div className="flex flex-col items-center p-6 bg-card rounded-2xl shadow-sm transition-all hover:shadow-lg hover:-translate-y-2">
-                <div className="bg-primary/10 p-3 md:p-4 rounded-full">
-                  <UtensilsCrossed className="h-8 w-8 md:h-10 md:w-10 text-primary" />
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl text-center">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">A solução completa para alimentar seu bebê com saúde e praticidade</h2>
+            <p className="mt-4 text-base md:text-lg text-muted-foreground">
+              Criado por uma mãe pesquisadora que já passou pelas suas dúvidas e reuniu tudo o que você precisa — sem enrolação, sem medo de errar.
+            </p>
+            <div className="mt-10 md:mt-12 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 text-left">
+              <div className="flex items-start gap-4 p-4 rounded-lg">
+                <CheckCircle2 className="h-6 w-6 text-primary mt-1 shrink-0" />
+                <div>
+                  <h3 className="text-lg font-semibold">Refeições completas</h3>
+                  <p className="text-muted-foreground">A partir dos 6 meses, com todos os nutrientes que seu bebê precisa.</p>
                 </div>
-                <h3 className="text-lg md:text-xl font-bold mt-5">Catálogo Exclusivo</h3>
-                <p className="mt-2 text-base text-muted-foreground">Dezenas de receitas testadas e aprovadas por mamães e nutricionistas, sempre à sua mão.</p>
               </div>
-              <div className="flex flex-col items-center p-6 bg-card rounded-2xl shadow-sm transition-all hover:shadow-lg hover:-translate-y-2">
-                <div className="bg-primary/10 p-3 md:p-4 rounded-full">
-                  <Baby className="h-8 w-8 md:h-10 md:w-10 text-primary" />
+              <div className="flex items-start gap-4 p-4 rounded-lg">
+                <CheckCircle2 className="h-6 w-6 text-primary mt-1 shrink-0" />
+                <div>
+                  <h3 className="text-lg font-semibold">Receitas validadas</h3>
+                  <p className="text-muted-foreground">Simples, nutritivas e testadas por milhares de famílias.</p>
                 </div>
-                <h3 className="text-lg md:text-xl font-bold mt-5">Filtros por Idade</h3>
-                <p className="mt-2 text-base text-muted-foreground">Encontre facilmente refeições seguras e apropriadas para cada fase do seu bebê, da introdução alimentar aos 3 anos.</p>
               </div>
-              <div className="flex flex-col items-center p-6 bg-card rounded-2xl shadow-sm transition-all hover:shadow-lg hover:-translate-y-2">
-                <div className="bg-primary/10 p-3 md:p-4 rounded-full">
-                  <Carrot className="h-8 w-8 md:h-10 md:w-10 text-primary" />
+              <div className="flex items-start gap-4 p-4 rounded-lg">
+                <CheckCircle2 className="h-6 w-6 text-primary mt-1 shrink-0" />
+                <div>
+                  <h3 className="text-lg font-semibold">Orientação clara</h3>
+                  <p className="text-muted-foreground">Acompanhamento por faixas etárias para você se sentir segura.</p>
                 </div>
-                <h3 className="text-lg md:text-xl font-bold mt-5">Ingredientes Simples</h3>
-                <p className="mt-2 text-base text-muted-foreground">Receitas práticas com ingredientes que você já tem em casa ou encontra em qualquer mercado.</p>
+              </div>
+              <div className="flex items-start gap-4 p-4 rounded-lg">
+                <CheckCircle2 className="h-6 w-6 text-primary mt-1 shrink-0" />
+                <div>
+                  <h3 className="text-lg font-semibold">Bônus exclusivos</h3>
+                  <p className="text-muted-foreground">Ferramentas e guias para facilitar ainda mais o seu dia a dia.</p>
+                </div>
               </div>
             </div>
           </div>
