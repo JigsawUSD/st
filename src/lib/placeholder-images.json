@@ -1,3 +1,58 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero",
+      "description": "Happy baby eating a healthy meal.",
+      "imageUrl": "https://images.unsplash.com/photo-1588495644868-1416d25d8b33?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxoYXBweSUyMGJhYnl8ZW58MHx8fHwxNzY2MTY2NzExfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "happy baby"
+    },
+    {
+      "id": "gallery1",
+      "description": "A bowl of green avocado puree for babies.",
+      "imageUrl": "https://images.unsplash.com/photo-1761314015019-158b483dfdf9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxhdm9jYWRvJTIwcHVyZWV8ZW58MHx8fHwxNzY2MTY2NzExfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "avocado puree"
+    },
+    {
+      "id": "gallery2",
+      "description": "Orange sweet potato mash for babies.",
+      "imageUrl": "https://images.unsplash.com/photo-1579123521334-44e68095cd7a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzd2VldCUyMHBvdGF0b3xlbnwwfHx8fDE3NjYxNjY3MTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "sweet potato"
+    },
+    {
+      "id": "gallery3",
+      "description": "Oatmeal with banana slices.",
+      "imageUrl": "https://images.unsplash.com/photo-1601966357349-39a75c854899?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxiYW5hbmElMjBvYXRtZWFsfGVufDB8fHx8MTc2NjE2NjcxMXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "banana oatmeal"
+    },
+    {
+      "id": "gallery4",
+      "description": "Steamed and pureed carrots.",
+      "imageUrl": "https://images.unsplash.com/photo-1655558132738-8a4f5124186f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y2Fycm90JTIwcHVyZWV8ZW58MHx8fHwxNzY2MTY2NzExfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "carrot puree"
+    },
+    {
+      "id": "testimonial1",
+      "description": "Portrait of a smiling woman.",
+      "imageUrl": "https://images.unsplash.com/photo-1554727242-741c14fa561c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzbWlsaW5nJTIwd29tYW58ZW58MHx8fHwxNzY2MTU0NjEzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "smiling woman"
+    },
+    {
+      "id": "testimonial2",
+      "description": "Portrait of a happy mother.",
+      "imageUrl": "https://images.unsplash.com/photo-1688489387460-222aaa4f7cc6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxoYXBweSUyMG1vdGhlcnxlbnwwfHx8fDE3NjYxNjY3MTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "happy mother"
+    },
+    {
+      "id": "testimonial3",
+      "description": "Portrait of a person.",
+      "imageUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjYwODgyNTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "guarantee",
+      "description": "A 7-day money-back guarantee seal.",
+      "imageUrl": "https://images.unsplash.com/photo-1635810766767-ca010af2d77b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxndWFyYW50ZWUlMjBzZWFsfGVufDB8fHx8MTc2NjE2NjcxMXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "guarantee seal"
+    }
+  ]
 }
