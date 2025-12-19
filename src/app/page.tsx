@@ -98,12 +98,12 @@ export default function Home() {
           </div>
         </section>
         
-        {/* Sentimental Carousel */}
+        {/* Testimonials Section */}
         <section className="py-16 md:py-28">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Momentos que Alimentam a Alma</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">O que as Mamães Estão Dizendo</h2>
             <p className="mt-4 max-w-3xl mx-auto text-base md:text-lg text-muted-foreground">
-              Veja a alegria de famílias que transformaram a hora da refeição em momentos de pura felicidade e conexão.
+              Histórias reais de quem transformou a hora da refeição.
             </p>
             <Carousel
               opts={{
@@ -113,19 +113,28 @@ export default function Home() {
               className="w-full max-w-4xl mx-auto mt-12"
             >
               <CarouselContent>
-                {sentimentalImages.map((img, index) => img && (
+                {testimonials.map((testimonial, index) => (
                   <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                    <div className="p-1">
-                      <Card className="overflow-hidden shadow-lg rounded-xl md:rounded-2xl">
-                        <CardContent className="p-0">
-                           <Image
-                            src={img.imageUrl}
-                            alt={img.description}
-                            width={400}
-                            height={400}
-                            className="object-cover w-full h-full aspect-square"
-                            data-ai-hint={img.imageHint}
-                          />
+                    <div className="p-1 h-full">
+                      <Card className="flex flex-col h-full text-left shadow-lg bg-card rounded-2xl">
+                        <CardHeader className="flex-row gap-4 items-center">
+                          {testimonialImages[index] && (
+                             <Image
+                              src={testimonialImages[index]!.imageUrl}
+                              alt={testimonial.name}
+                              width={56}
+                              height={56}
+                              className="rounded-full object-cover"
+                              data-ai-hint={testimonialImages[index]!.imageHint}
+                            />
+                          )}
+                          <div>
+                            <CardTitle className="text-base md:text-lg">{testimonial.name}</CardTitle>
+                            <CardDescription className="text-sm">{testimonial.role}</CardDescription>
+                          </div>
+                        </CardHeader>
+                        <CardContent className="flex-1">
+                          <p className="text-sm md:text-base text-foreground/80">"{testimonial.quote}"</p>
                         </CardContent>
                       </Card>
                     </div>
@@ -331,44 +340,6 @@ export default function Home() {
                       className="object-cover w-full h-full aspect-[4/3]"
                       data-ai-hint={img.imageHint}
                     />
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-        
-        {/* Testimonials Section */}
-        <section className="py-16 md:py-28 bg-secondary/50">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="inline-block bg-primary/10 p-3 rounded-full mb-4">
-              <Heart className="h-8 w-8 md:h-10 md:w-10 text-primary" />
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-4">O que as Mamães Estão Dizendo</h2>
-            <p className="mt-4 max-w-2xl mx-auto text-base md:text-lg text-muted-foreground">
-              Nós amamos nossas clientes, e elas parecem nos amar de volta!
-            </p>
-            <div className="grid md:grid-cols-3 gap-8 mt-10 md:mt-12">
-              {testimonials.map((testimonial, index) => (
-                <Card key={index} className="text-left shadow-lg bg-card rounded-2xl">
-                  <CardHeader className="flex-row gap-4 items-center">
-                    {testimonialImages[index] && (
-                       <Image
-                        src={testimonialImages[index]!.imageUrl}
-                        alt={testimonial.name}
-                        width={56}
-                        height={56}
-                        className="rounded-full object-cover"
-                        data-ai-hint={testimonialImages[index]!.imageHint}
-                      />
-                    )}
-                    <div>
-                      <CardTitle className="text-base md:text-lg">{testimonial.name}</CardTitle>
-                      <CardDescription className="text-sm">{testimonial.role}</CardDescription>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm md:text-base text-foreground/80">"{testimonial.quote}"</p>
                   </CardContent>
                 </Card>
               ))}
