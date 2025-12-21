@@ -37,6 +37,7 @@ export default function Home() {
     findImage('sentimental4'),
     findImage('sentimental5'),
     findImage('sentimental6'),
+    findImage('sentimental7'),
   ].filter(Boolean);
 
   return (
