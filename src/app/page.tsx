@@ -35,7 +35,7 @@ export default function Home() {
     findImage('sentimental7'),
     findImage('sentimental8'),
     findImage('sentimental9'),
-  ].filter(img => img && img.id !== 'sentimental-broccoli');
+  ].filter(img => img);
 
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
@@ -112,7 +112,7 @@ export default function Home() {
               className="w-full max-w-xs sm:max-w-xl md:max-w-4xl lg:max-w-6xl mx-auto mt-10 md:mt-12"
             >
               <CarouselContent>
-                {sentimentalImages.filter(img => img).map((img, index) => (
+                {sentimentalImages.map((img, index) => (
                     <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                       <div className="p-1 h-full">
                          <Card className="overflow-hidden shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl rounded-lg md:rounded-2xl h-full">
@@ -129,55 +129,6 @@ export default function Home() {
                          </Card>
                       </div>
                     </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="hidden sm:flex" />
-              <CarouselNext className="hidden sm:flex" />
-            </Carousel>
-          </div>
-        </section>
-
-        {/* Testimonials Section */}
-        <section className="py-16 md:py-24 bg-secondary/30">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">O que as Mamães Estão Dizendo</h2>
-            <p className="mt-4 max-w-3xl mx-auto text-base md:text-lg text-muted-foreground">
-              Histórias reais de quem transformou a hora da refeição.
-            </p>
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              className="w-full max-w-xs sm:max-w-xl md:max-w-4xl lg:max-w-6xl mx-auto mt-10 md:mt-12"
-            >
-              <CarouselContent>
-                {testimonials.map((testimonial, index) => (
-                  <CarouselItem key={index} className="sm:basis-1/2 lg:basis-1/3 flex">
-                    <div className="p-1 flex-1">
-                      <Card className="flex flex-col h-full text-left shadow-lg bg-card rounded-2xl">
-                        <CardHeader className="flex-row gap-4 items-center">
-                          {testimonialImages[index] && (
-                             <Image
-                              src={testimonialImages[index]!.imageUrl}
-                              alt={testimonial.name}
-                              width={48}
-                              height={48}
-                              className="rounded-full object-cover h-12 w-12"
-                              data-ai-hint={testimonialImages[index]!.imageHint}
-                            />
-                          )}
-                          <div>
-                            <CardTitle className="text-base font-bold">{testimonial.name}</CardTitle>
-                            <CardDescription className="text-sm">{testimonial.role}</CardDescription>
-                          </div>
-                        </CardHeader>
-                        <CardContent className="flex-1">
-                          <p className="text-sm text-foreground/80">"{testimonial.quote}"</p>
-                        </CardContent>
-                      </Card>
-                    </div>
-                  </CarouselItem>
                 ))}
               </CarouselContent>
               <CarouselPrevious className="hidden sm:flex" />
@@ -273,6 +224,55 @@ export default function Home() {
                 </CardContent>
               </Card>
             </div>
+          </div>
+        </section>
+        
+        {/* Testimonials Section */}
+        <section className="py-16 md:py-24 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">O que as Mamães Estão Dizendo</h2>
+            <p className="mt-4 max-w-3xl mx-auto text-base md:text-lg text-muted-foreground">
+              Histórias reais de quem transformou a hora da refeição.
+            </p>
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full max-w-xs sm:max-w-xl md:max-w-4xl lg:max-w-6xl mx-auto mt-10 md:mt-12"
+            >
+              <CarouselContent>
+                {testimonials.map((testimonial, index) => (
+                  <CarouselItem key={index} className="sm:basis-1/2 lg:basis-1/3 flex">
+                    <div className="p-1 flex-1">
+                      <Card className="flex flex-col h-full text-left shadow-lg bg-card rounded-2xl">
+                        <CardHeader className="flex-row gap-4 items-center">
+                          {testimonialImages[index] && (
+                             <Image
+                              src={testimonialImages[index]!.imageUrl}
+                              alt={testimonial.name}
+                              width={48}
+                              height={48}
+                              className="rounded-full object-cover h-12 w-12"
+                              data-ai-hint={testimonialImages[index]!.imageHint}
+                            />
+                          )}
+                          <div>
+                            <CardTitle className="text-base font-bold">{testimonial.name}</CardTitle>
+                            <CardDescription className="text-sm">{testimonial.role}</CardDescription>
+                          </div>
+                        </CardHeader>
+                        <CardContent className="flex-1">
+                          <p className="text-sm text-foreground/80">"{testimonial.quote}"</p>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden sm:flex" />
+              <CarouselNext className="hidden sm:flex" />
+            </Carousel>
           </div>
         </section>
 
