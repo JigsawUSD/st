@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Baby, Carrot, ChefHat, Heart, UtensilsCrossed, CheckCircle2, HelpCircle, Flame, ShieldCheck, ListChecks, BookOpenCheck, Snowflake, ShieldAlert, BrainCircuit, Sparkles, Star, Salad, ClipboardCheck, Clock, Smile, Instagram, BadgeCheck } from 'lucide-react';
+import { Baby, Carrot, ChefHat, Heart, UtensilsCrossed, CheckCircle2, HelpCircle, Flame, ShieldCheck, ListChecks, BookOpenCheck, Snowflake, ShieldAlert, BrainCircuit, Sparkles, Star, Salad, ClipboardCheck, Clock, Smile, Instagram, BadgeCheck, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -39,7 +39,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
-      <header className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center">
+      <header className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
         <BabyBitesLogo />
         <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 transition-transform transform hover:scale-105 rounded-full px-5 py-2 text-sm sm:px-6 sm:text-base shadow-md">
           <a href="#pricing">Comprar Agora</a>
@@ -112,7 +112,7 @@ export default function Home() {
               className="w-full max-w-xs sm:max-w-xl md:max-w-4xl lg:max-w-6xl mx-auto mt-10 md:mt-12"
             >
               <CarouselContent>
-                {sentimentalImages.map((img, index) => (
+                {sentimentalImages.filter(img => img).map((img, index) => (
                     <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                       <div className="p-1 h-full">
                          <Card className="overflow-hidden shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl rounded-lg md:rounded-2xl h-full">
@@ -374,6 +374,26 @@ export default function Home() {
                   </CardContent>
                 </Card>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Objection Handling Section */}
+        <section className="py-16 md:py-24 bg-secondary/30">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+            <div className="bg-background rounded-2xl shadow-lg border border-yellow-500/50 p-6 sm:p-8 text-center">
+              <AlertTriangle className="h-12 w-12 text-yellow-500 mx-auto" />
+              <h2 className="text-2xl sm:text-3xl font-bold mt-4">Um Alerta Importante Sobre o "Barato que Sai Caro"</h2>
+              <p className="mt-4 max-w-2xl mx-auto text-muted-foreground text-base md:text-lg">
+                Sim, você pode encontrar guias mais baratos por aí. Mas já parou para pensar na segurança do seu bebê? O ditado "o barato sai caro" nunca foi tão verdadeiro.
+              </p>
+              <p className="mt-4 max-w-2xl mx-auto font-semibold text-foreground text-base md:text-lg">
+                Nosso material foi criado e validado por uma mãe, que usou cada técnica com os próprios filhos. Não é uma teoria, é a prática que funciona e protege.
+              </p>
+              <p className="mt-4 max-w-2xl mx-auto text-muted-foreground text-base md:text-lg">
+                Vale a pena arriscar a saúde e o bem-estar do seu pequeno tesouro para economizar alguns reais? Uma experiência ruim pode deixar marcas.
+                Melhor investir um pouco mais na tranquilidade e na certeza de estar fazendo o melhor pelo seu filho, não é mesmo?
+              </p>
             </div>
           </div>
         </section>
