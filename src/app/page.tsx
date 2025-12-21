@@ -31,7 +31,6 @@ export default function Home() {
     findImage('testimonial3'),
   ].filter(Boolean);
   const sentimentalImages = [
-    findImage('sentimental1'),
     findImage('sentimental3'),
     findImage('sentimental7'),
     findImage('sentimental8'),
