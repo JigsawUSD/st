@@ -32,9 +32,7 @@ export default function Home() {
   ].filter(Boolean);
   const sentimentalImages = [
     findImage('sentimental1'),
-    findImage('sentimental2'),
     findImage('sentimental3'),
-    findImage('sentimental4'),
     findImage('sentimental7'),
   ].filter(Boolean);
 
@@ -113,7 +111,7 @@ export default function Home() {
               className="w-full max-w-xs sm:max-w-xl md:max-w-4xl lg:max-w-6xl mx-auto mt-10 md:mt-12"
             >
               <CarouselContent>
-                {sentimentalImages.map((img, index) => img && (
+                {sentimentalImages.map((img, index) => (
                   <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                     <div className="p-1 h-full">
                        <Card className="overflow-hidden shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl rounded-lg md:rounded-2xl h-full">
