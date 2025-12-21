@@ -34,6 +34,8 @@ export default function Home() {
     findImage('sentimental1'),
     findImage('sentimental3'),
     findImage('sentimental7'),
+    findImage('sentimental8'),
+    findImage('sentimental9'),
   ].filter(Boolean);
 
   return (
@@ -112,22 +114,24 @@ export default function Home() {
             >
               <CarouselContent>
                 {sentimentalImages.map((img, index) => (
-                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                    <div className="p-1 h-full">
-                       <Card className="overflow-hidden shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl rounded-lg md:rounded-2xl h-full">
-                         <CardContent className="p-0 h-full">
-                          <Image
-                            src={img.imageUrl}
-                            alt={img.description}
-                            width={400}
-                            height={400}
-                            className="object-cover w-full h-full aspect-square"
-                            data-ai-hint={img.imageHint}
-                          />
-                         </CardContent>
-                       </Card>
-                    </div>
-                  </CarouselItem>
+                  img && (
+                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                      <div className="p-1 h-full">
+                         <Card className="overflow-hidden shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl rounded-lg md:rounded-2xl h-full">
+                           <CardContent className="p-0 h-full">
+                            <Image
+                              src={img.imageUrl}
+                              alt={img.description}
+                              width={400}
+                              height={400}
+                              className="object-cover w-full h-full aspect-square"
+                              data-ai-hint={img.imageHint}
+                            />
+                           </CardContent>
+                         </Card>
+                      </div>
+                    </CarouselItem>
+                  )
                 ))}
               </CarouselContent>
               <CarouselPrevious className="hidden sm:flex" />
