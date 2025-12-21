@@ -35,7 +35,7 @@ export default function Home() {
     findImage('sentimental7'),
     findImage('sentimental8'),
     findImage('sentimental9'),
-  ].filter(Boolean);
+  ].filter(img => img && img.id !== 'sentimental-broccoli');
 
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
@@ -249,15 +249,7 @@ export default function Home() {
                 ...quer parar de sofrer com a alimentação do bebê e precisa de uma solução prática, segura e realista.
               </p>
             </div>
-            <div className="mt-10 md:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              <Card className="bg-card text-center shadow-lg rounded-2xl p-4">
-                <CardContent className="flex flex-col items-center gap-3 pt-6">
-                  <div className="bg-primary/10 p-3 rounded-full">
-                    <HelpCircle className="h-8 w-8 text-primary" />
-                  </div>
-                  <p className="font-semibold text-base sm:text-lg">Está insegura sobre o que oferecer</p>
-                </CardContent>
-              </Card>
+            <div className="mt-10 md:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               <Card className="bg-card text-center shadow-lg rounded-2xl p-4">
                 <CardContent className="flex flex-col items-center gap-3 pt-6">
                   <div className="bg-primary/10 p-3 rounded-full">
