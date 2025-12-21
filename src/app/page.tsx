@@ -477,6 +477,7 @@ export default function Home() {
           <p className="text-xs text-muted-foreground max-w-3xl">
             Este site não é afiliado ao Facebook ou a qualquer entidade do Facebook. Depois que você sair do Facebook, a responsabilidade não é deles e sim do nosso site. Fazemos todos os esforços para indicar claramente e mostrar todas as provas do produto e usamos resultados reais.
           </p>
+          <p className="text-xs text-muted-foreground/80 mt-2">Página Afiliada</p>
         </div>
       </footer>
     </div>
