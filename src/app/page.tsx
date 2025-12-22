@@ -463,7 +463,7 @@ export default function Home() {
                             <CardDescription className="text-sm">{testimonial.role}</CardDescription>
                           </div>
                         </CardHeader>
-                        <CardContent className="flex-1">
+                        <CardContent>
                           <p className="text-sm text-foreground/80">"{testimonial.quote}"</p>
                         </CardContent>
                       </Card>
