@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/carousel";
 import Link from 'next/link';
 import Script from 'next/script';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
 const findImage = (id: string) => PlaceHolderImages.find(img => img.id === id);
@@ -47,12 +47,10 @@ export default function Home() {
     findImage('sentimental13'),
   ].filter(img => img);
   const authorImage = findImage('author');
+  const [loadPlayer, setLoadPlayer] = useState(false);
   
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      let player: any;
-      let terminou = false;
-
+    if (loadPlayer && typeof window !== 'undefined' && !(window as any).YT) {
       const tag = document.createElement('script');
       tag.src = "https://www.youtube.com/iframe_api";
       const firstScriptTag = document.getElementsByTagName('script')[0];
@@ -61,60 +59,65 @@ export default function Home() {
       } else {
         document.head.appendChild(tag);
       }
-      
-      (window as any).onYouTubeIframeAPIReady = function() {
-        player = new (window as any).YT.Player('vslVideo', {
-          videoId: 'MfJteXrOpjY',
-          playerVars: {
-            'autoplay': 0,
-            'controls': 0,
-            'rel': 0,
-            'showinfo': 0,
-            'modestbranding': 1,
-            'start': 100,
-            'disablekb': 1,
-            'iv_load_policy': 3,
-            'playsinline': 1,
-          },
-          events: {
-            onReady: onReady,
-            onStateChange: onStateChange
-          }
-        });
+    }
+
+    let player: any;
+    let terminou = false;
+
+    (window as any).onYouTubeIframeAPIReady = function() {
+      player = new (window as any).YT.Player('vslVideo', {
+        videoId: 'MfJteXrOpjY',
+        playerVars: {
+          'autoplay': 1,
+          'controls': 0,
+          'rel': 0,
+          'showinfo': 0,
+          'modestbranding': 1,
+          'start': 100,
+          'disablekb': 1,
+          'iv_load_policy': 3,
+          'playsinline': 1,
+        },
+        events: {
+          onReady: onReady,
+          onStateChange: onStateChange
+        }
+      });
+    }
+
+    function onReady(event: any) {
+        const clickBlocker = document.querySelector('.click-blocker') as HTMLElement;
+        if(clickBlocker) {
+            clickBlocker.style.display = 'block';
+        }
+        event.target.playVideo();
+    }
+
+    function onStateChange(event: any) {
+      if (event.data === 2 && !terminou) { // YT.PlayerState.PAUSED
+        player.playVideo();
       }
-
-      function onReady() {
-        const startBtn = document.getElementById('startBtn');
-        if (startBtn) {
-          startBtn.addEventListener('click', () => {
-            const startOverlay = document.getElementById('startOverlay');
-            if(startOverlay) {
-              startOverlay.style.display = 'none';
-            }
-            const clickBlocker = document.querySelector('.click-blocker') as HTMLElement;
-            if(clickBlocker) {
-              clickBlocker.style.display = 'block';
-            }
-            player.seekTo(0);
-            player.playVideo();
-          });
-        }
-      }
-
-      function onStateChange(event: any) {
-        // Se tentar pausar antes do final, continua
-        if (event.data === 2 && !terminou) { // YT.PlayerState.PAUSED
-          player.playVideo();
-        }
-
-        // Quando chega ao final, PARA DEFINITIVAMENTE
-        if (event.data === 0) { // YT.PlayerState.ENDED
-          terminou = true;
-          // O player vai parar naturalmente, não precisa chamar player.pauseVideo()
-        }
+      if (event.data === 0) { // YT.PlayerState.ENDED
+        terminou = true;
+        // The player will stop naturally, no need to call player.pauseVideo()
       }
     }
-  }, []);
+    
+    if (loadPlayer) {
+      if ((window as any).YT && (window as any).YT.Player) {
+        (window as any).onYouTubeIframeAPIReady();
+      }
+    }
+
+  }, [loadPlayer]);
+
+  const handlePlay = () => {
+    const startOverlay = document.getElementById('startOverlay');
+    if (startOverlay) {
+        startOverlay.style.display = 'none';
+    }
+    setLoadPlayer(true);
+  }
 
 
   return (
@@ -138,18 +141,19 @@ export default function Home() {
             </p>
             <div className="mt-8 max-w-4xl mx-auto">
               <div className="aspect-video bg-black rounded-lg shadow-2xl overflow-hidden relative">
-                {/* YouTube Player */}
-                <div id="vslVideo" className="w-full h-full absolute top-0 left-0"></div>
-
-                {/* Click Blocker */}
-                <div className="click-blocker absolute inset-0 z-10" style={{ display: 'none' }}></div>
                 
-                {/* Start Overlay */}
+                {loadPlayer && (
+                  <>
+                    <div id="vslVideo" className="w-full h-full absolute top-0 left-0"></div>
+                    <div className="click-blocker absolute inset-0 z-10" style={{ display: 'none' }}></div>
+                  </>
+                )}
+                
                 <div id="startOverlay" className="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center cursor-pointer z-20">
-                  <div id="startBtn" className="flex flex-col items-center">
+                  <button id="startBtn" onClick={handlePlay} className="flex flex-col items-center">
                     <PlayCircle className="w-20 h-20 sm:w-24 sm:h-24 text-white hover:text-primary transition-colors transform hover:scale-110" />
                     <span className="text-white text-lg mt-2 font-semibold">▶ Aperte o play para iniciar o vídeo</span>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -629,6 +633,7 @@ export default function Home() {
     
 
     
+
 
 
 
