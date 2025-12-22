@@ -23,6 +23,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
+import { Textarea } from '@/components/ui/textarea';
+import { generateRecipeIdea } from '@/ai/flows/recipe-flow';
+import { addDocumentNonBlocking, useFirestore } from '@/firebase';
+import { collection } from 'firebase/firestore';
+import { Label } from '@/components/ui/label';
 
 
 const findImage = (id: string) => PlaceHolderImages.find(img => img.id === id);
@@ -60,6 +65,10 @@ export default function Home() {
   const { toast } = useToast();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [recipeSuggestion, setRecipeSuggestion] = useState('');
+  const [generationError, setGenerationError] = useState('');
+  const firestore = useFirestore();
 
   const form = useForm<LeadFormValues>({
     resolver: zodResolver(leadFormSchema),
@@ -69,20 +78,52 @@ export default function Home() {
     },
   });
 
+  const recipeForm = useForm<{ ingredients: string }>({
+    defaultValues: { ingredients: '' },
+  });
+
+  async function handleGenerateRecipe({ ingredients }: { ingredients: string }) {
+    setIsGenerating(true);
+    setRecipeSuggestion('');
+    setGenerationError('');
+    try {
+      const result = await generateRecipeIdea({ ingredients });
+      setRecipeSuggestion(result.recipeSuggestion);
+    } catch (error) {
+      console.error('Error generating recipe:', error);
+      setGenerationError('Desculpe, não consegui gerar uma receita agora. Tente novamente mais tarde.');
+    } finally {
+      setIsGenerating(false);
+    }
+  }
+
   async function onSubmit(data: LeadFormValues) {
     setIsSubmitting(true);
-    console.log('Lead capturado:', data);
-    // Simula o envio de um email
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    toast({
-      title: 'Sucesso!',
-      description: 'Sua amostra grátis foi enviada para o seu email.',
-      variant: 'default',
-    });
-
-    form.reset();
-    setIsSubmitting(false);
+    try {
+      const leadsCollection = collection(firestore, 'free_ebook_requests');
+      addDocumentNonBlocking(leadsCollection, {
+        name: data.name,
+        email: data.email,
+        requestDate: new Date().toISOString(),
+      });
+      
+      toast({
+        title: 'Sucesso!',
+        description: 'Sua amostra grátis foi enviada para o seu email.',
+        variant: 'default',
+      });
+  
+      form.reset();
+    } catch (error) {
+      console.error("Error saving lead: ", error);
+      toast({
+        title: 'Erro!',
+        description: 'Houve um problema ao salvar seu pedido. Tente novamente.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
 
@@ -188,6 +229,51 @@ export default function Home() {
                   </Button>
                 </form>
               </Form>
+            </div>
+          </div>
+        </section>
+
+        {/* AI Recipe Generator */}
+        <section id="recipe-generator" className="py-16 md:py-24 bg-secondary/30">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+            <div className="bg-card rounded-2xl shadow-xl border p-6 sm:p-8 text-center">
+              <Wand2 className="h-12 w-12 text-primary mx-auto" />
+              <h2 className="text-2xl sm:text-3xl font-bold mt-4">Não sabe o que cozinhar hoje?</h2>
+              <p className="mt-4 max-w-2xl mx-auto text-muted-foreground text-base md:text-lg">
+                Diga-nos quais ingredientes você tem em casa e nossa IA criará uma ideia de receita saudável para o seu bebê em segundos!
+              </p>
+              <form onSubmit={recipeForm.handleSubmit(handleGenerateRecipe)} className="space-y-4 mt-6 max-w-lg mx-auto text-left">
+                <div className="grid w-full gap-2">
+                  <Label htmlFor="ingredients">Ingredientes (ex: banana, aveia, maçã)</Label>
+                  <Textarea
+                    id="ingredients"
+                    placeholder="Digite aqui os ingredientes separados por vírgula..."
+                    {...recipeForm.register('ingredients')}
+                  />
+                </div>
+                <Button type="submit" disabled={isGenerating} className="w-full">
+                  {isGenerating ? 'Gerando...' : 'Gerar Receita Mágica'}
+                </Button>
+              </form>
+
+              {(recipeSuggestion || generationError) && (
+                <div className="mt-6 text-left bg-secondary/30 p-4 rounded-lg">
+                  <h3 className="font-bold text-lg mb-2">Sugestão de Receita:</h3>
+                  {recipeSuggestion ? (
+                    <div className="whitespace-pre-wrap text-sm text-foreground">
+                      {recipeSuggestion}
+                    </div>
+                  ) : (
+                    <p className="text-destructive">{generationError}</p>
+                  )}
+                   <div className="mt-6 text-center border-t pt-4">
+                      <p className="text-base font-semibold mb-3">Gostou? Nosso ebook tem dezenas de receitas completas e detalhadas como esta!</p>
+                      <Button asChild>
+                        <a href="#pricing">Comprar o Ebook Completo</a>
+                      </Button>
+                   </div>
+                </div>
+              )}
             </div>
           </div>
         </section>
