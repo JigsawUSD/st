@@ -51,6 +51,7 @@ export default function Home() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       let player: any;
+      let terminou = false;
 
       const tag = document.createElement('script');
       tag.src = "https://www.youtube.com/iframe_api";
@@ -101,15 +102,15 @@ export default function Home() {
       }
 
       function onStateChange(event: any) {
-        // Impede pausa
-        if (event.data === 2) { // YT.PlayerState.PAUSED
+        // Se tentar pausar antes do final, continua
+        if (event.data === 2 && !terminou) { // YT.PlayerState.PAUSED
           player.playVideo();
         }
 
-        // Impede finalizar (loop invisível)
+        // Quando chega ao final, PARA DEFINITIVAMENTE
         if (event.data === 0) { // YT.PlayerState.ENDED
-          player.seekTo(0);
-          player.playVideo();
+          terminou = true;
+          // O player vai parar naturalmente, não precisa chamar player.pauseVideo()
         }
       }
     }
@@ -628,6 +629,7 @@ export default function Home() {
     
 
     
+
 
 
 
