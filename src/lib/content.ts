@@ -6,7 +6,7 @@ export const testimonials = [
   },
   {
     name: 'Mariana C.',
-    role: 'Mãe da Sofia',
+    role: 'Mãe do Gael',
     quote: 'Eu tinha muito medo de dar coisas meio sólidas para meu pequeno Gael, aprendi depois de ver essas receitas que não devemos ter medos e sim saber dosar. O medo limita eles, pois são novos e querem explorar, óbvio que com o devido cuidado.',
   },
   {
