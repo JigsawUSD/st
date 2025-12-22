@@ -49,11 +49,9 @@ export default function Home() {
   const authorImage = findImage('author');
   
   useEffect(() => {
-    // This code will run on the client side
     if (typeof window !== 'undefined') {
       let player: any;
 
-      // This function is called by the YouTube API script
       (window as any).onYouTubeIframeAPIReady = function() {
         player = new (window as any).YT.Player('vslVideo', {
           videoId: 'MfJteXrOpjY',
@@ -66,28 +64,35 @@ export default function Home() {
             'start': 100,
           },
           events: {
-            'onReady': onPlayerReady,
-            'onStateChange': bloquearPause
+            onReady: onReady,
+            onStateChange: onStateChange
           }
         });
       }
 
-      function onPlayerReady(event: any) {
-        const playButton = document.getElementById('playButton');
-        if (playButton) {
-            playButton.addEventListener('click', () => {
-            const overlay = document.getElementById('overlay');
-            if (overlay) {
-              overlay.style.display = 'none';
+      function onReady() {
+        const startBtn = document.getElementById('startBtn');
+        if (startBtn) {
+          startBtn.addEventListener('click', () => {
+            const startOverlay = document.getElementById('startOverlay');
+            if(startOverlay) {
+              startOverlay.style.display = 'none';
             }
+            player.seekTo(0);
             player.playVideo();
           });
         }
       }
 
-      function bloquearPause(event: any) {
-        // YT.PlayerState.PAUSED is 2
-        if (event.data === 2) {
+      function onStateChange(event: any) {
+        // Impede pausa
+        if (event.data === 2) { // YT.PlayerState.PAUSED
+          player.playVideo();
+        }
+
+        // Impede finalizar (loop invisível)
+        if (event.data === 0) { // YT.PlayerState.ENDED
+          player.seekTo(0);
           player.playVideo();
         }
       }
@@ -118,8 +123,8 @@ export default function Home() {
             <div className="mt-8 max-w-4xl mx-auto">
               <div className="aspect-video bg-black rounded-lg shadow-2xl overflow-hidden relative">
                 <div id="vslVideo" className="w-full h-full"></div>
-                <div id="overlay" className="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center cursor-pointer">
-                  <div id="playButton" className="flex flex-col items-center">
+                <div id="startOverlay" className="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center cursor-pointer">
+                  <div id="startBtn" className="flex flex-col items-center">
                     <PlayCircle className="w-20 h-20 sm:w-24 sm:h-24 text-white hover:text-primary transition-colors transform hover:scale-110" />
                     <span className="text-white text-lg mt-2 font-semibold">Clique para assistir</span>
                   </div>
@@ -602,6 +607,7 @@ export default function Home() {
     
 
     
+
 
 
 
