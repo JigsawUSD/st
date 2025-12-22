@@ -396,7 +396,6 @@ export default function Home() {
               <div className="w-full md:w-2/3 text-center md:text-left">
                 <p className="text-sm font-bold text-primary">QUEM ESTÁ POR TRÁS DE TUDO ISSO</p>
                 <h2 className="text-2xl sm:text-3xl font-bold mt-2">Marlice Botelho Costa Bonini</h2>
-                <p className="text-sm text-muted-foreground font-semibold mt-1">3 Anos Hotmarter</p>
                 <div className="mt-4 text-base text-foreground/80 space-y-3">
                   <p>
                     Sou mãe, especialista em Introdução Alimentar e pesquisadora com doutorado, unindo ciência e experiência materna para oferecer o melhor em nutrição infantil.
