@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/carousel";
 import Link from 'next/link';
 import Script from 'next/script';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 
 const findImage = (id: string) => PlaceHolderImages.find(img => img.id === id);
@@ -48,6 +48,8 @@ export default function Home() {
   ].filter(img => img);
   const authorImage = findImage('author');
   const [loadPlayer, setLoadPlayer] = useState(false);
+  const [showCtas, setShowCtas] = useState(false);
+  const playerRef = useRef<any>(null);
   
   useEffect(() => {
     if (loadPlayer && typeof window !== 'undefined' && !(window as any).YT) {
@@ -61,11 +63,11 @@ export default function Home() {
       }
     }
 
-    let player: any;
-    let terminou = false;
-
+    let progressInterval: NodeJS.Timeout;
+    
     (window as any).onYouTubeIframeAPIReady = function() {
-      player = new (window as any).YT.Player('vslVideo', {
+      if (playerRef.current) return;
+      playerRef.current = new (window as any).YT.Player('vslVideo', {
         videoId: 'MfJteXrOpjY',
         playerVars: {
           'autoplay': 1,
@@ -94,20 +96,44 @@ export default function Home() {
     }
 
     function onStateChange(event: any) {
-      if (event.data === 2 && !terminou) { // YT.PlayerState.PAUSED
-        player.playVideo();
+      // When video starts playing
+      if (event.data === (window as any).YT.PlayerState.PLAYING) {
+        const duration = playerRef.current.getDuration();
+        const halfwayPoint = duration / 2;
+
+        progressInterval = setInterval(() => {
+          const currentTime = playerRef.current.getCurrentTime();
+          if (currentTime >= halfwayPoint) {
+            setShowCtas(true);
+            clearInterval(progressInterval);
+          }
+        }, 1000);
+      } else {
+         clearInterval(progressInterval);
       }
-      if (event.data === 0) { // YT.PlayerState.ENDED
-        terminou = true;
-        // The player will stop naturally, no need to call player.pauseVideo()
+
+      // Logic to prevent pausing
+      if (event.data === (window as any).YT.PlayerState.PAUSED && !playerRef.current.isFinished) {
+        playerRef.current.playVideo();
+      }
+
+      // Logic for when video ends
+      if (event.data === (window as any).YT.PlayerState.ENDED) {
+        playerRef.current.isFinished = true; // Set a flag
+        setShowCtas(true); // Ensure CTAs are shown at the end
+        clearInterval(progressInterval);
       }
     }
     
     if (loadPlayer) {
-      if ((window as any).YT && (window as any).YT.Player) {
+      if ((window as any).YT && (window as any).YT.Player && !playerRef.current) {
         (window as any).onYouTubeIframeAPIReady();
       }
     }
+
+    return () => {
+      clearInterval(progressInterval);
+    };
 
   }, [loadPlayer]);
 
@@ -124,9 +150,11 @@ export default function Home() {
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
       <header className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center">
         <BabyBitesLogo />
-        <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 transition-transform transform hover:scale-105 rounded-full px-5 py-2 text-sm sm:px-6 sm:text-base shadow-md">
-          <a href="https://go.hotmart.com/X103471648N?ap=9f82">Quero o Ebook</a>
-        </Button>
+        {showCtas && (
+          <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 transition-transform transform hover:scale-105 rounded-full px-5 py-2 text-sm sm:px-6 sm:text-base shadow-md">
+            <a href="https://go.hotmart.com/X103471648N?ap=9f82">Quero o Ebook</a>
+          </Button>
+        )}
       </header>
 
       <main className="flex-1">
@@ -157,14 +185,16 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="mt-10">
-              <Button size="lg" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 text-base sm:text-xl px-8 py-6 sm:px-10 sm:py-7 rounded-full shadow-xl transition-transform transform hover:scale-105 animate-pulse">
-                <a href="https://go.hotmart.com/X103471648N?ap=9f82">QUERO ACESSO IMEDIATO POR R$39,90</a>
-              </Button>
-              <p className="mt-4 text-sm text-slate-400">Pagamento Único • Acesso Vitalício • 7 Dias de Garantia</p>
-              <p className="mt-2 text-sm font-semibold text-white">Oferta válida por poucos dias!</p>
-              <p className="text-xs sm:text-sm text-slate-300">Acesso imediato após a compra</p>
-            </div>
+            {showCtas && (
+              <div className="mt-10 transition-opacity duration-500 ease-in opacity-100">
+                <Button size="lg" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 text-base sm:text-xl px-8 py-6 sm:px-10 sm:py-7 rounded-full shadow-xl transition-transform transform hover:scale-105 animate-pulse">
+                  <a href="https://go.hotmart.com/X103471648N?ap=9f82">QUERO ACESSO IMEDIATO POR R$39,90</a>
+                </Button>
+                <p className="mt-4 text-sm text-slate-400">Pagamento Único • Acesso Vitalício • 7 Dias de Garantia</p>
+                <p className="mt-2 text-sm font-semibold text-white">Oferta válida por poucos dias!</p>
+                <p className="text-xs sm:text-sm text-slate-300">Acesso imediato após a compra</p>
+              </div>
+            )}
           </div>
         </section>
         
@@ -479,11 +509,13 @@ export default function Home() {
                 <p className="text-base sm:text-lg text-muted-foreground">Valor total em bônus que você receberá GRÁTIS:</p>
                 <p className="text-2xl sm:text-3xl font-bold text-primary mt-1">R$ 114,00</p>
             </div>
-            <div className="mt-12 text-center">
-              <Button size="lg" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 text-base sm:text-xl px-8 py-6 smpx-10 sm:py-7 rounded-full shadow-xl transition-transform transform hover:scale-105 animate-pulse">
-                <a href="https://go.hotmart.com/X103471648N?ap=9f82">Não perca essa oportunidade</a>
-              </Button>
-            </div>
+            {showCtas && (
+              <div className="mt-12 text-center">
+                <Button size="lg" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 text-base sm:text-xl px-8 py-6 smpx-10 sm:py-7 rounded-full shadow-xl transition-transform transform hover:scale-105 animate-pulse">
+                  <a href="https://go.hotmart.com/X103471648N?ap=9f82">Não perca essa oportunidade</a>
+                </Button>
+              </div>
+            )}
           </div>
         </section>
 
@@ -587,19 +619,21 @@ export default function Home() {
             <p className="mt-4 max-w-3xl mx-auto text-base md:text-xl text-slate-300">
              Tenha acesso vitalício ao guia completo, bônus exclusivos e a tranquilidade que você merece.
             </p>
-            <div className="mt-10 md:mt-12 p-6 sm:p-8 bg-card text-foreground rounded-2xl shadow-2xl max-w-md mx-auto border">
-              <p className="text-lg sm:text-xl font-bold text-foreground">Acesso completo por um preço especial de lançamento!</p>
-              <div className="my-4 sm:my-6 flex flex-col items-center">
-                <span className="text-lg sm:text-2xl font-semibold text-muted-foreground line-through">de R$99,90</span>
-                <span className="text-5xl sm:text-6xl font-bold text-primary">por R$39,90</span>
+            {showCtas && (
+              <div className="mt-10 md:mt-12 p-6 sm:p-8 bg-card text-foreground rounded-2xl shadow-2xl max-w-md mx-auto border">
+                <p className="text-lg sm:text-xl font-bold text-foreground">Acesso completo por um preço especial de lançamento!</p>
+                <div className="my-4 sm:my-6 flex flex-col items-center">
+                  <span className="text-lg sm:text-2xl font-semibold text-muted-foreground line-through">de R$99,90</span>
+                  <span className="text-5xl sm:text-6xl font-bold text-primary">por R$39,90</span>
+                </div>
+                <Button asChild size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 text-base sm:text-xl px-8 py-6 smpy-7 rounded-full shadow-lg transition-transform transform hover:scale-105 animate-pulse">
+                  <a href="https://go.hotmart.com/X103471648N?ap=9f82">
+                    Garantir meu Acesso Imediato!
+                  </a>
+                </Button>
+                <p className="mt-4 text-xs sm:text-sm text-muted-foreground">Compra segura e acesso vitalício por pagamento único.</p>
               </div>
-              <Button asChild size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 text-base sm:text-xl px-8 py-6 smpy-7 rounded-full shadow-lg transition-transform transform hover:scale-105 animate-pulse">
-                <a href="https://go.hotmart.com/X103471648N?ap=9f82">
-                  Garantir meu Acesso Imediato!
-                </a>
-              </Button>
-              <p className="mt-4 text-xs sm:text-sm text-muted-foreground">Compra segura e acesso vitalício por pagamento único.</p>
-            </div>
+            )}
           </div>
         </section>
       </main>
@@ -644,3 +678,6 @@ export default function Home() {
 
 
 
+
+
+    
