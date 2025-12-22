@@ -1,3 +1,4 @@
+
 export const testimonials = [
   {
     name: 'Juliana S.',
@@ -12,7 +13,7 @@ export const testimonials = [
   {
     name: 'Fernanda P.',
     role: 'Mãe do Arthur',
-    quote: 'Finalmente um app que entende a correria de ser mãe. As receitas são rápidas, fáceis e o melhor: meu filho come tudo! Simplesmente adoramos.',
+    quote: 'Finalmente um ebook que entende a correria de ser mãe. As receitas são rápidas, fáceis e o melhor: meu filho come tudo! Simplesmente adoramos.',
   },
 ];
 
