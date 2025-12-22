@@ -529,7 +529,7 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col justify-center items-center gap-4 text-center">
           <div className="flex gap-4">
             <Link href="/termos-de-servico" className="text-xs text-muted-foreground hover:text-primary transition-colors">
-              Termos de Serviço
+              Termos de Responsabilidade
             </Link>
             <Link href="/termos-de-usuario" className="text-xs text-muted-foreground hover:text-primary transition-colors">
               Termos de Usuário
@@ -554,5 +554,6 @@ export default function Home() {
     
 
     
+
 
 
