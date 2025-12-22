@@ -33,13 +33,12 @@ export default function Home() {
   const sentimentalImages = [
     findImage('sentimental3'),
     findImage('sentimental8'),
-    findImage('sentimental9'),
     findImage('sentimental10'),
   ].filter(img => img);
 
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
-      <header className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+      <header className="container mx-auto flex items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <BabyBitesLogo />
         <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 transition-transform transform hover:scale-105 rounded-full px-5 py-2 text-sm sm:px-6 sm:text-base shadow-md">
           <a href="#pricing">Comprar Agora</a>
