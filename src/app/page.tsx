@@ -53,7 +53,7 @@ export default function Home() {
       <header className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center">
         <BabyBitesLogo />
         <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 transition-transform transform hover:scale-105 rounded-full px-5 py-2 text-sm sm:px-6 sm:text-base shadow-md">
-          <a href="#pricing">Comprar Agora</a>
+          <a href="https://go.hotmart.com/X103471648N?ap=9f82">Comprar Agora</a>
         </Button>
       </header>
 
@@ -82,7 +82,7 @@ export default function Home() {
             </div>
             <div className="mt-10">
               <Button size="lg" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 text-base sm:text-xl px-8 py-6 sm:px-10 sm:py-7 rounded-full shadow-xl transition-transform transform hover:scale-105 animate-pulse">
-                <a href="#pricing">QUERO ACESSO IMEDIATO POR R$39,90</a>
+                <a href="https://go.hotmart.com/X103471648N?ap=9f82">QUERO ACESSO IMEDIATO POR R$39,90</a>
               </Button>
               <p className="mt-4 text-sm text-slate-400">Pagamento Único • Acesso Vitalício • 7 Dias de Garantia</p>
               <p className="mt-2 text-sm font-semibold text-white">Oferta válida por poucos dias!</p>
@@ -404,7 +404,7 @@ export default function Home() {
             </div>
             <div className="mt-12 text-center">
               <Button size="lg" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 text-base sm:text-xl px-8 py-6 sm:px-10 sm:py-7 rounded-full shadow-xl transition-transform transform hover:scale-105 animate-pulse">
-                <a href="#pricing">Não perca essa oportunidade</a>
+                <a href="https://go.hotmart.com/X103471648N?ap=9f82">Não perca essa oportunidade</a>
               </Button>
             </div>
           </div>
@@ -516,8 +516,10 @@ export default function Home() {
                 <span className="text-lg sm:text-2xl font-semibold text-muted-foreground line-through">de R$99,90</span>
                 <span className="text-5xl sm:text-6xl font-bold text-primary">por R$39,90</span>
               </div>
-              <Button size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 text-base sm:text-xl px-8 py-6 sm:py-7 rounded-full shadow-lg transition-transform transform hover:scale-105 animate-pulse">
-                Garantir meu Acesso Imediato!
+              <Button asChild size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 text-base sm:text-xl px-8 py-6 sm:py-7 rounded-full shadow-lg transition-transform transform hover:scale-105 animate-pulse">
+                <a href="https://go.hotmart.com/X103471648N?ap=9f82">
+                  Garantir meu Acesso Imediato!
+                </a>
               </Button>
               <p className="mt-4 text-xs sm:text-sm text-muted-foreground">Compra segura e acesso vitalício por pagamento único.</p>
             </div>
@@ -554,6 +556,7 @@ export default function Home() {
     
 
     
+
 
 
 
