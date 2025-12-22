@@ -100,6 +100,9 @@ export default function Home() {
   async function onSubmit(data: LeadFormValues) {
     setIsSubmitting(true);
     try {
+      if (!firestore) {
+        throw new Error('Firestore is not initialized');
+      }
       const leadsCollection = collection(firestore, 'free_ebook_requests');
       addDocumentNonBlocking(leadsCollection, {
         name: data.name,
@@ -183,52 +186,6 @@ export default function Home() {
                 <Heart className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
                 <span className="font-semibold text-sm sm:text-base text-foreground">Ajudando mais de 10 mil mamães</span>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Lead Capture Section */}
-        <section className="py-16 md:py-24 bg-background">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
-            <div className="bg-card rounded-2xl shadow-xl border p-6 sm:p-8 text-center">
-              <Mail className="h-12 w-12 text-primary mx-auto" />
-              <h2 className="text-2xl sm:text-3xl font-bold mt-4">Receba uma Amostra Grátis do Ebook!</h2>
-              <p className="mt-4 max-w-2xl mx-auto text-muted-foreground text-base md:text-lg">
-                Deixe seu email abaixo para receber 20 páginas do nosso ebook e comece a transformar a alimentação do seu bebê hoje mesmo.
-              </p>
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-6 max-w-lg mx-auto text-left">
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Seu Nome</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Digite seu nome" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Seu Melhor Email</FormLabel>
-                        <FormControl>
-                          <Input placeholder="exemplo@email.com" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <Button type="submit" disabled={isSubmitting} className="w-full">
-                    {isSubmitting ? 'Enviando...' : 'Receber Amostra Grátis'}
-                  </Button>
-                </form>
-              </Form>
             </div>
           </div>
         </section>
@@ -712,6 +669,8 @@ export default function Home() {
     </div>
   );
 }
+    
+
     
 
     
