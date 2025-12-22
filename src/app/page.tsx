@@ -34,11 +34,12 @@ export default function Home() {
     findImage('sentimental3'),
     findImage('sentimental8'),
     findImage('sentimental9'),
+    findImage('sentimental10'),
   ].filter(img => img);
 
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
-      <header className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center">
+      <header className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
         <BabyBitesLogo />
         <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 transition-transform transform hover:scale-105 rounded-full px-5 py-2 text-sm sm:px-6 sm:text-base shadow-md">
           <a href="#pricing">Comprar Agora</a>
@@ -111,7 +112,7 @@ export default function Home() {
               className="w-full max-w-xs sm:max-w-xl md:max-w-4xl lg:max-w-6xl mx-auto mt-10 md:mt-12"
             >
               <CarouselContent>
-                {sentimentalImages.map((img, index) => (
+                {sentimentalImages.map((img, index) => img && (
                     <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                       <div className="p-1 h-full">
                          <Card className="overflow-hidden shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl rounded-lg md:rounded-2xl h-full">
