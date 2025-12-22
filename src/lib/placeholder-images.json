@@ -3,7 +3,7 @@
     {
       "id": "hero",
       "description": "Happy baby eating a healthy meal.",
-      "imageUrl": "https://images.unsplash.com/photo-1588495644868-1416d25d8b33?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxoYXBweSUyMGJhYnl8ZW58MHx8fHwxNzY2MTY2NzExfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1588495644868-1416d25d8b33?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxoYXBweSUyMGJhYnl8ZW58MHx8fHwxNzY2MTY2NzExfDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "happy baby"
     },
     {
@@ -89,6 +89,12 @@
       "description": "A baby eating from a bowl.",
       "imageUrl": "https://i.pinimg.com/736x/61/19/60/611960d734b9f349db327a9ed71c864e.jpg",
       "imageHint": "baby eating"
+    },
+    {
+      "id": "author",
+      "description": "A placeholder image for the author.",
+      "imageUrl": "https://images.unsplash.com/photo-1733231291465-d86afc9336ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxhdXRob3IlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjYyOTQ1NzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "author portrait"
     }
   ]
 }

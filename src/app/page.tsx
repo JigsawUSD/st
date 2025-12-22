@@ -2,7 +2,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Baby, Carrot, ChefHat, Heart, UtensilsCrossed, CheckCircle2, HelpCircle, Flame, ShieldCheck, ListChecks, BookOpenCheck, Snowflake, ShieldAlert, BrainCircuit, Sparkles, Star, Salad, ClipboardCheck, Clock, Smile, Instagram, BadgeCheck, AlertTriangle, Wand2 } from 'lucide-react';
+import { Baby, Carrot, ChefHat, Heart, UtensilsCrossed, CheckCircle2, HelpCircle, Flame, ShieldCheck, ListChecks, BookOpenCheck, Snowflake, ShieldAlert, BrainCircuit, Sparkles, Star, Salad, ClipboardCheck, Clock, Smile, Instagram, BadgeCheck, AlertTriangle, Wand2, BookUser } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -57,6 +57,7 @@ export default function Home() {
     findImage('sentimental12'),
     findImage('sentimental13'),
   ].filter(img => img);
+  const authorImage = findImage('author');
 
   const [recipeIdea, setRecipeIdea] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
@@ -325,9 +326,49 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Author Section */}
+        <section id="author" className="py-16 md:py-24 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+              <div className="w-full md:w-1/3 flex-shrink-0">
+                {authorImage ? (
+                  <Image
+                    src={authorImage.imageUrl}
+                    alt={authorImage.description}
+                    width={400}
+                    height={400}
+                    className="rounded-full aspect-square object-cover shadow-xl mx-auto w-48 h-48 md:w-full md:h-auto"
+                    data-ai-hint={authorImage.imageHint}
+                  />
+                ) : (
+                  <div className="bg-card rounded-full aspect-square shadow-xl mx-auto w-48 h-48 md:w-full md:h-auto flex items-center justify-center">
+                    <BookUser className="w-16 h-16 text-muted-foreground" />
+                  </div>
+                )}
+              </div>
+              <div className="w-full md:w-2/3 text-center md:text-left">
+                <p className="text-sm font-bold text-primary">QUEM ESTÁ POR TRÁS DE TUDO ISSO</p>
+                <h2 className="text-2xl sm:text-3xl font-bold mt-2">Marlice Botelho Costa Bonini</h2>
+                <p className="text-sm text-muted-foreground font-semibold mt-1">3 Anos Hotmarter</p>
+                <div className="mt-4 text-base text-foreground/80 space-y-3">
+                  <p>
+                    Sou mãe, especialista em Introdução Alimentar e pesquisadora com doutorado, unindo ciência e experiência materna para oferecer o melhor em nutrição infantil.
+                  </p>
+                  <p>
+                    Todas as receitas do meu ebook "Crescendo Saudável" foram cuidadosamente testadas por mim para agradar o paladar dos bebês, até mesmo os mais exigentes. Como já enfrentei muitas dúvidas sobre como alimentar meu próprio filho, resolvi compartilhar meu conhecimento para ajudar outras mães nessa fase desafiadora.
+                  </p>
+                  <p>
+                    Sigo rigorosamente as recomendações dos principais órgãos de saúde, como a Sociedade Brasileira de Pediatria (SBP), o Ministério da Saúde (MS) e a Organização Mundial da Saúde (OMS), garantindo que todas as informações e receitas estejam alinhadas com as melhores práticas de nutrição infantil.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
         
         {/* Testimonials Section */}
-        <section className="py-16 md:py-24 bg-background">
+        <section className="py-16 md:py-24 bg-secondary/30">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">O que as Mamães Estão Dizendo</h2>
             <p className="mt-4 max-w-3xl mx-auto text-base md:text-lg text-muted-foreground">
@@ -376,7 +417,7 @@ export default function Home() {
         </section>
 
         {/* Bonus Section */}
-        <section className="py-16 md:py-24 bg-secondary/30">
+        <section className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
             <div className="text-center">
               <p className="font-bold text-primary">APROVEITE E RECEBA, TOTALMENTE GRÁTIS,</p>
@@ -439,7 +480,7 @@ export default function Home() {
                 </div>
               </Card>
             </div>
-             <div className="mt-12 text-center bg-background/70 p-4 rounded-lg">
+             <div className="mt-12 text-center bg-card p-4 rounded-lg">
                 <p className="text-base sm:text-lg text-muted-foreground">Valor total em bônus que você receberá GRÁTIS:</p>
                 <p className="text-2xl sm:text-3xl font-bold text-primary mt-1">R$ 114,00</p>
             </div>
