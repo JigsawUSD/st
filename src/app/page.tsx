@@ -2,7 +2,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Baby, Carrot, ChefHat, Heart, UtensilsCrossed, CheckCircle2, HelpCircle, Flame, ShieldCheck, ListChecks, BookOpenCheck, Snowflake, ShieldAlert, BrainCircuit, Sparkles, Star, Salad, ClipboardCheck, Clock, Smile, Instagram, BadgeCheck, AlertTriangle, Wand2, BookUser, Mail, PlayCircle } from 'lucide-react';
+import { Baby, Carrot, ChefHat, Heart, UtensilsCrossed, CheckCircle2, HelpCircle, Flame, ShieldCheck, ListChecks, BookOpenCheck, Snowflake, ShieldAlert, BrainCircuit, Sparkles, Star, Salad, ClipboardCheck, Clock, Smile, Instagram, BadgeCheck, AlertTriangle, Wand2, BookUser, Mail, PlayCircle, Timer } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -17,11 +17,57 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Link from 'next/link';
-import Script from 'next/script';
 import { useEffect, useState, useRef } from 'react';
 
 
 const findImage = (id: string) => PlaceHolderImages.find(img => img.id === id);
+
+const CountdownTimer = () => {
+  const [timeLeft, setTimeLeft] = useState({ hours: 23, minutes: 59, seconds: 59 });
+
+  useEffect(() => {
+    const countdownDate = new Date();
+    countdownDate.setHours(countdownDate.getHours() + 24);
+
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = countdownDate.getTime() - now;
+
+      if (distance < 0) {
+        clearInterval(interval);
+        setTimeLeft({ hours: 0, minutes: 0, seconds: 0 });
+      } else {
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        setTimeLeft({ hours, minutes, seconds });
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+  
+  const formatTime = (time: number) => time.toString().padStart(2, '0');
+
+  return (
+    <div className="flex items-center justify-center gap-4 my-4">
+      <div className="flex flex-col items-center">
+        <span className="text-4xl font-bold text-destructive">{formatTime(timeLeft.hours)}</span>
+        <span className="text-xs text-muted-foreground">Horas</span>
+      </div>
+      <span className="text-4xl font-bold text-destructive">:</span>
+      <div className="flex flex-col items-center">
+        <span className="text-4xl font-bold text-destructive">{formatTime(timeLeft.minutes)}</span>
+        <span className="text-xs text-muted-foreground">Minutos</span>
+      </div>
+      <span className="text-4xl font-bold text-destructive">:</span>
+      <div className="flex flex-col items-center">
+        <span className="text-4xl font-bold text-destructive">{formatTime(timeLeft.seconds)}</span>
+        <span className="text-xs text-muted-foreground">Segundos</span>
+      </div>
+    </div>
+  );
+};
 
 
 export default function Home() {
@@ -96,7 +142,6 @@ export default function Home() {
     }
 
     function onStateChange(event: any) {
-      // When video starts playing
       if (event.data === (window as any).YT.PlayerState.PLAYING) {
         const duration = playerRef.current.getDuration();
         const halfwayPoint = duration / 2;
@@ -112,15 +157,13 @@ export default function Home() {
          clearInterval(progressInterval);
       }
 
-      // Logic to prevent pausing
       if (event.data === (window as any).YT.PlayerState.PAUSED && !playerRef.current.isFinished) {
         playerRef.current.playVideo();
       }
 
-      // Logic for when video ends
       if (event.data === (window as any).YT.PlayerState.ENDED) {
-        playerRef.current.isFinished = true; // Set a flag
-        setShowCtas(true); // Ensure CTAs are shown at the end
+        playerRef.current.isFinished = true; 
+        setShowCtas(true);
         clearInterval(progressInterval);
       }
     }
@@ -158,7 +201,6 @@ export default function Home() {
       </header>
 
       <main className="flex-1">
-        {/* VSL Section */}
         <section className="bg-slate-900 py-12 md:py-20 text-center">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
@@ -198,7 +240,6 @@ export default function Home() {
           </div>
         </section>
         
-        {/* Social Proof Section */}
         <section className="bg-secondary/30 py-4">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-8 text-center">
@@ -215,7 +256,6 @@ export default function Home() {
           </div>
         </section>
         
-        {/* Sentimental Carousel Section */}
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Momentos que Alimentam a Alma</h2>
@@ -255,7 +295,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* What You'll Achieve Section */}
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
             <div className="text-center">
@@ -307,7 +346,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Pain Points Section */}
         <section className="py-16 md:py-24 bg-secondary/30">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
             <div className="text-center">
@@ -353,7 +391,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Author Section */}
         <section id="author" className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
@@ -392,7 +429,6 @@ export default function Home() {
           </div>
         </section>
         
-        {/* Testimonials Section */}
         <section className="py-16 md:py-24 bg-secondary/30">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">O que as Mamães Estão Dizendo</h2>
@@ -441,7 +477,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Bonus Section */}
         <section className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
             <div className="text-center">
@@ -449,7 +484,6 @@ export default function Home() {
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-2">+ 5 BÔNUS INCRÍVEIS!</h2>
             </div>
             <div className="mt-10 md:mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-              {/* Bonus 1 */}
               <Card className="flex flex-col sm:flex-row items-start gap-4 p-5 rounded-2xl shadow-lg border-l-4 border-primary">
                 <div className="bg-primary/10 p-3 rounded-full shrink-0">
                   <BookOpenCheck className="h-8 w-8 text-primary" />
@@ -460,7 +494,6 @@ export default function Home() {
                   <p className="text-xs font-semibold text-primary/80 mt-2 line-through">Valor: R$ 29,00</p>
                 </div>
               </Card>
-              {/* Bonus 2 */}
               <Card className="flex flex-col sm:flex-row items-start gap-4 p-5 rounded-2xl shadow-lg border-l-4 border-primary">
                 <div className="bg-primary/10 p-3 rounded-full shrink-0">
                   <Snowflake className="h-8 w-8 text-primary" />
@@ -471,7 +504,6 @@ export default function Home() {
                    <p className="text-xs font-semibold text-primary/80 mt-2 line-through">Valor: R$ 17,00</p>
                 </div>
               </Card>
-              {/* Bonus 3 */}
               <Card className="flex flex-col sm:flex-row items-start gap-4 p-5 rounded-2xl shadow-lg border-l-4 border-primary">
                 <div className="bg-primary/10 p-3 rounded-full shrink-0">
                   <ShieldAlert className="h-8 w-8 text-primary" />
@@ -482,7 +514,6 @@ export default function Home() {
                    <p className="text-xs font-semibold text-primary/80 mt-2 line-through">Valor: R$ 22,00</p>
                 </div>
               </Card>
-              {/* Bonus 4 */}
               <Card className="flex flex-col sm:flex-row items-start gap-4 p-5 rounded-2xl shadow-lg border-l-4 border-primary">
                 <div className="bg-primary/10 p-3 rounded-full shrink-0">
                   <BrainCircuit className="h-8 w-8 text-primary" />
@@ -493,7 +524,6 @@ export default function Home() {
                    <p className="text-xs font-semibold text-primary/80 mt-2 line-through">Valor: R$ 27,00</p>
                 </div>
               </Card>
-              {/* Bonus 5 */}
                <Card className="flex flex-col sm:flex-row items-start gap-4 p-5 rounded-2xl shadow-lg border-l-4 border-primary md:col-span-2">
                 <div className="bg-primary/10 p-3 rounded-full shrink-0">
                   <Sparkles className="h-8 w-8 text-primary" />
@@ -519,7 +549,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Gallery Section */}
         <section className="py-16 md:py-24 bg-card border-y">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Pratinhos que Despertam Sorrisos</h2>
@@ -545,7 +574,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Objection Handling Section */}
         <section className="py-16 md:py-24 bg-secondary/30">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
             <div className="bg-background rounded-2xl shadow-lg border border-yellow-500/50 p-6 sm:p-8 text-center">
@@ -565,7 +593,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* New Guarantee Section */}
         <section className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="bg-card rounded-2xl shadow-xl border p-6 sm:p-8 md:p-12 flex flex-col md:flex-row items-center gap-6 md:gap-12">
@@ -592,7 +619,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* FAQ Section */}
         <section className="py-16 md:py-24">
           <div className="container max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center">Tudo Esclarecido</h2>
@@ -612,7 +638,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Final CTA Section */}
         <section id="pricing" className="py-16 md:py-24 bg-slate-900 text-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold">Pronta para transformar a alimentação do seu bebê?</h2>
@@ -621,7 +646,11 @@ export default function Home() {
             </p>
             {showCtas && (
               <div className="mt-10 md:mt-12 p-6 sm:p-8 bg-card text-foreground rounded-2xl shadow-2xl max-w-md mx-auto border">
-                <p className="text-lg sm:text-xl font-bold text-foreground">Acesso completo por um preço especial de lançamento!</p>
+                <div className="flex justify-center items-center gap-2 text-destructive">
+                   <Timer className="h-5 w-5" />
+                  <p className="text-sm font-semibold">A OFERTA TERMINA EM:</p>
+                </div>
+                 <CountdownTimer />
                 <div className="my-4 sm:my-6 flex flex-col items-center">
                   <span className="text-lg sm:text-2xl font-semibold text-muted-foreground line-through">de R$99,90</span>
                   <span className="text-5xl sm:text-6xl font-bold text-primary">por R$39,90</span>
@@ -662,22 +691,4 @@ export default function Home() {
     </div>
   );
 }
-    
-
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
     
