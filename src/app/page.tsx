@@ -36,11 +36,12 @@ export default function Home() {
     findImage('sentimental10'),
     findImage('sentimental11'),
     findImage('sentimental12'),
+    findImage('sentimental13'),
   ].filter(img => img);
 
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
-      <header className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+      <header className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center">
         <BabyBitesLogo />
         <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 transition-transform transform hover:scale-105 rounded-full px-5 py-2 text-sm sm:px-6 sm:text-base shadow-md">
           <a href="#pricing">Comprar Agora</a>
