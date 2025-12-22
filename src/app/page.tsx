@@ -2,7 +2,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Baby, Carrot, ChefHat, Heart, UtensilsCrossed, CheckCircle2, HelpCircle, Flame, ShieldCheck, ListChecks, BookOpenCheck, Snowflake, ShieldAlert, BrainCircuit, Sparkles, Star, Salad, ClipboardCheck, Clock, Smile, Instagram, BadgeCheck, AlertTriangle, Wand2, BookUser, Mail } from 'lucide-react';
+import { Baby, Carrot, ChefHat, Heart, UtensilsCrossed, CheckCircle2, HelpCircle, Flame, ShieldCheck, ListChecks, BookOpenCheck, Snowflake, ShieldAlert, BrainCircuit, Sparkles, Star, Salad, ClipboardCheck, Clock, Smile, Instagram, BadgeCheck, AlertTriangle, Wand2, BookUser, Mail, PlayCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -17,6 +17,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Link from 'next/link';
+import Script from 'next/script';
+import { useEffect } from 'react';
 
 
 const findImage = (id: string) => PlaceHolderImages.find(img => img.id === id);
@@ -46,10 +48,56 @@ export default function Home() {
   ].filter(img => img);
   const authorImage = findImage('author');
   
+  useEffect(() => {
+    // This code will run on the client side
+    if (typeof window !== 'undefined') {
+      let player: any;
+
+      // This function is called by the YouTube API script
+      (window as any).onYouTubeIframeAPIReady = function() {
+        player = new (window as any).YT.Player('vslVideo', {
+          videoId: 'MfJteXrOpjY',
+          playerVars: {
+            'autoplay': 0,
+            'controls': 0,
+            'rel': 0,
+            'showinfo': 0,
+            'modestbranding': 1,
+            'start': 100,
+          },
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': bloquearPause
+          }
+        });
+      }
+
+      function onPlayerReady(event: any) {
+        const playButton = document.getElementById('playButton');
+        if (playButton) {
+            playButton.addEventListener('click', () => {
+            const overlay = document.getElementById('overlay');
+            if (overlay) {
+              overlay.style.display = 'none';
+            }
+            player.playVideo();
+          });
+        }
+      }
+
+      function bloquearPause(event: any) {
+        // YT.PlayerState.PAUSED is 2
+        if (event.data === 2) {
+          player.playVideo();
+        }
+      }
+    }
+  }, []);
 
 
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
+      <Script src="https://www.youtube.com/iframe_api" strategy="afterInteractive" />
       <header className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center">
         <BabyBitesLogo />
         <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 transition-transform transform hover:scale-105 rounded-full px-5 py-2 text-sm sm:px-6 sm:text-base shadow-md">
@@ -68,16 +116,14 @@ export default function Home() {
               Assista ao vídeo abaixo e descubra como tornar as refeições mais fáceis e nutritivas.
             </p>
             <div className="mt-8 max-w-4xl mx-auto">
-              <div className="aspect-video bg-black rounded-lg shadow-2xl overflow-hidden">
-                {/* Responsive Embed for Video */}
-                <iframe
-                  className="w-full h-full"
-                  src="https://www.youtube.com/embed/MfJteXrOpjY?start=100"
-                  title="YouTube video player"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                ></iframe>
+              <div className="aspect-video bg-black rounded-lg shadow-2xl overflow-hidden relative">
+                <div id="vslVideo" className="w-full h-full"></div>
+                <div id="overlay" className="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center cursor-pointer">
+                  <div id="playButton" className="flex flex-col items-center">
+                    <PlayCircle className="w-20 h-20 sm:w-24 sm:h-24 text-white hover:text-primary transition-colors transform hover:scale-110" />
+                    <span className="text-white text-lg mt-2 font-semibold">Clique para assistir</span>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="mt-10">
@@ -556,6 +602,7 @@ export default function Home() {
     
 
     
+
 
 
 
