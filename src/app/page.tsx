@@ -52,6 +52,15 @@ export default function Home() {
     if (typeof window !== 'undefined') {
       let player: any;
 
+      const tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      const firstScriptTag = document.getElementsByTagName('script')[0];
+      if (firstScriptTag && firstScriptTag.parentNode) {
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      } else {
+        document.head.appendChild(tag);
+      }
+      
       (window as any).onYouTubeIframeAPIReady = function() {
         player = new (window as any).YT.Player('vslVideo', {
           videoId: 'MfJteXrOpjY',
@@ -62,6 +71,9 @@ export default function Home() {
             'showinfo': 0,
             'modestbranding': 1,
             'start': 100,
+            'disablekb': 1,
+            'iv_load_policy': 3,
+            'playsinline': 1,
           },
           events: {
             onReady: onReady,
@@ -77,6 +89,10 @@ export default function Home() {
             const startOverlay = document.getElementById('startOverlay');
             if(startOverlay) {
               startOverlay.style.display = 'none';
+            }
+            const clickBlocker = document.querySelector('.click-blocker') as HTMLElement;
+            if(clickBlocker) {
+              clickBlocker.style.display = 'block';
             }
             player.seekTo(0);
             player.playVideo();
@@ -102,7 +118,6 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
-      <Script src="https://www.youtube.com/iframe_api" strategy="afterInteractive" />
       <header className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center">
         <BabyBitesLogo />
         <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 transition-transform transform hover:scale-105 rounded-full px-5 py-2 text-sm sm:px-6 sm:text-base shadow-md">
@@ -122,11 +137,17 @@ export default function Home() {
             </p>
             <div className="mt-8 max-w-4xl mx-auto">
               <div className="aspect-video bg-black rounded-lg shadow-2xl overflow-hidden relative">
-                <div id="vslVideo" className="w-full h-full"></div>
-                <div id="startOverlay" className="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center cursor-pointer">
+                {/* YouTube Player */}
+                <div id="vslVideo" className="w-full h-full absolute top-0 left-0"></div>
+
+                {/* Click Blocker */}
+                <div className="click-blocker absolute inset-0 z-10" style={{ display: 'none' }}></div>
+                
+                {/* Start Overlay */}
+                <div id="startOverlay" className="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center cursor-pointer z-20">
                   <div id="startBtn" className="flex flex-col items-center">
                     <PlayCircle className="w-20 h-20 sm:w-24 sm:h-24 text-white hover:text-primary transition-colors transform hover:scale-110" />
-                    <span className="text-white text-lg mt-2 font-semibold">Clique para assistir</span>
+                    <span className="text-white text-lg mt-2 font-semibold">▶ Aperte o play para iniciar o vídeo</span>
                   </div>
                 </div>
               </div>
@@ -607,6 +628,7 @@ export default function Home() {
     
 
     
+
 
 
 
