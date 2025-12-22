@@ -72,7 +72,7 @@ export default function Home() {
                 {/* Responsive Embed for Video */}
                 <iframe
                   className="w-full h-full"
-                  src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=LbfL1tWc-C3hY_aF"
+                  src="https://www.youtube.com/embed/MfJteXrOpjY?start=100"
                   title="YouTube video player"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerPolicy="strict-origin-when-cross-origin"
@@ -403,7 +403,7 @@ export default function Home() {
                 <p className="text-2xl sm:text-3xl font-bold text-primary mt-1">R$ 114,00</p>
             </div>
             <div className="mt-12 text-center">
-              <Button size="lg" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 text-base sm:text-xl px-8 py-6 sm:px-10 sm:py-7 rounded-full shadow-xl transition-transform transform hover:scale-105 animate-pulse">
+              <Button size="lg" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 text-base sm:text-xl px-8 py-6 smpx-10 sm:py-7 rounded-full shadow-xl transition-transform transform hover:scale-105 animate-pulse">
                 <a href="https://go.hotmart.com/X103471648N?ap=9f82">Não perca essa oportunidade</a>
               </Button>
             </div>
@@ -516,7 +516,7 @@ export default function Home() {
                 <span className="text-lg sm:text-2xl font-semibold text-muted-foreground line-through">de R$99,90</span>
                 <span className="text-5xl sm:text-6xl font-bold text-primary">por R$39,90</span>
               </div>
-              <Button asChild size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 text-base sm:text-xl px-8 py-6 sm:py-7 rounded-full shadow-lg transition-transform transform hover:scale-105 animate-pulse">
+              <Button asChild size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 text-base sm:text-xl px-8 py-6 smpy-7 rounded-full shadow-lg transition-transform transform hover:scale-105 animate-pulse">
                 <a href="https://go.hotmart.com/X103471648N?ap=9f82">
                   Garantir meu Acesso Imediato!
                 </a>
@@ -556,6 +556,7 @@ export default function Home() {
     
 
     
+
 
 
 
