@@ -125,7 +125,7 @@ export default function Home() {
       <header className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center">
         <BabyBitesLogo />
         <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 transition-transform transform hover:scale-105 rounded-full px-5 py-2 text-sm sm:px-6 sm:text-base shadow-md">
-          <a href="https://go.hotmart.com/X103471648N?ap=9f82">Comprar Agora</a>
+          <a href="https://go.hotmart.com/X103471648N?ap=9f82">Quero o Ebook</a>
         </Button>
       </header>
 
@@ -633,6 +633,7 @@ export default function Home() {
     
 
     
+
 
 
 
