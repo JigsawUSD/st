@@ -1,0 +1,86 @@
+/**
+ * @file firestore.rules
+ * @description Firestore Security Rules for the Baby Bites Hub application.
+ *
+ * ## Core Philosophy
+ * This ruleset is designed for a public-facing application that needs to capture
+ * user information (for an ebook request) in a secure, write-only manner. The primary
+ * goal is to allow anyone to submit information while ensuring that submitted data,
+ * which contains Personally Identifiable Information (PII) like email addresses,
+ * is completely inaccessible to all clients after submission. This creates a secure
+ * "dropbox" that can only be read by trusted backend processes (e.g., a Cloud Function
+ * using the Admin SDK) to fulfill the requests.
+ *
+ * ## Data Structure
+ * The data is organized into a single, top-level collection:
+ * - /free_ebook_requests/{freeEbookRequestId}: Stores individual ebook requests.
+ *
+ * ## Key Security Decisions
+ * - Public Write Access: The `/free_ebook_requests` collection is intentionally open
+ *   for creation by any user, including anonymous ones, to allow the public-facing
+ *   web form to function correctly.
+ * - Strict Read/Update/Delete Denial: All read and modification operations
+ *   (`get`, `list`, `update`, `delete`) on `/free_ebook_requests` are denied for all clients.
+ *   This is a critical security measure to prevent any user from accessing or tampering
+ *   with the submitted PII of other users.
+ * - Backend Responsibility: This security model assumes that a trusted server-side
+ *   process will read from the `/free_ebook_requests` collection to process the
+ *   requests (e.g., send the ebook via email). Client applications have no
+ *   read access.
+ *
+ * ## Denormalization for Authorization
+ * Denormalization is not required for this simple data model as there are no
+ * complex authorization relationships between documents.
+ *
+ * ## Structural Segregation
+ * The use of a dedicated `/free_ebook_requests` collection effectively segregates
+ * sensitive, user-submitted data from any other potential application data (like
+ * public recipes), allowing for distinct and secure rule enforcement.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // -------------------------------------------------------------------------
+    // Helper Functions
+    // -------------------------------------------------------------------------
+
+    /**
+     * Checks if a user is authenticated.
+     */
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    /**
+     * In Prototyping Mode, we perform minimal validation on create.
+     * We ensure that the essential fields for an ebook request exist,
+     * preventing empty documents from being created, but we do not
+     * validate their types.
+     */
+    function hasRequiredEbookRequestFields() {
+      return 'name' in request.resource.data && 'email' in request.resource.data;
+    }
+
+
+    // -------------------------------------------------------------------------
+    // Collection Rules
+    // -------------------------------------------------------------------------
+
+    /**
+     * @description Rules for the collection that stores user requests for a free ebook.
+     * This collection functions as a secure, write-only "dropbox".
+     * @path /free_ebook_requests/{freeEbookRequestId}
+     * @allow (create) Any user, signed-in or anonymous, can submit a new request as long as it contains a name and email.
+     * @deny (get, list, update, delete) Any user trying to read, modify, or delete any request after it has been submitted. This protects user privacy.
+     * @principle Protects submitted Personally Identifiable Information (PII) by making the collection write-only for clients. A trusted backend process is expected to read this data.
+     */
+    match /free_ebook_requests/{freeEbookRequestId} {
+      allow get: if false;
+      allow list: if false;
+      allow create: if hasRequiredEbookRequestFields();
+      allow update: if false;
+      allow delete: if false;
+    }
+  }
+}

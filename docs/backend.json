@@ -1,0 +1,131 @@
+{
+  "entities": {
+    "Recipe": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Recipe",
+      "type": "object",
+      "description": "Represents a baby food recipe.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Recipe entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the recipe."
+        },
+        "description": {
+          "type": "string",
+          "description": "A short description of the recipe."
+        },
+        "ageGroup": {
+          "type": "string",
+          "description": "Recommended age group for the recipe (e.g., '6-9 months', '9-12 months')."
+        },
+        "ingredients": {
+          "type": "array",
+          "description": "List of ingredients required for the recipe.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "instructions": {
+          "type": "string",
+          "description": "Preparation instructions for the recipe."
+        },
+        "imageUri": {
+          "type": "string",
+          "description": "URI of an image representing the recipe.",
+          "format": "uri"
+        },
+        "prepTime": {
+          "type": "number",
+          "description": "Preparation time in minutes."
+        },
+        "cookTime": {
+          "type": "number",
+          "description": "Cooking time in minutes."
+        },
+        "totalTime": {
+          "type": "number",
+          "description": "Total time (preparation + cooking) in minutes."
+        },
+        "dietaryNeeds": {
+          "type": "array",
+          "description": "List of dietary needs that this recipe suits (e.g. vegetarian, gluten-free)",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description",
+        "ageGroup",
+        "ingredients",
+        "instructions",
+        "imageUri"
+      ]
+    },
+    "FreeEbookRequest": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "FreeEbookRequest",
+      "type": "object",
+      "description": "Represents a request for a free ebook from a user.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the FreeEbookRequest entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the person requesting the ebook."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the person requesting the ebook.",
+          "format": "email"
+        },
+        "requestDate": {
+          "type": "string",
+          "description": "Date and time when the ebook was requested.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "email",
+        "requestDate"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/free_ebook_requests/{freeEbookRequestId}",
+        "definition": {
+          "entityName": "FreeEbookRequest",
+          "schema": {
+            "$ref": "#/backend/entities/FreeEbookRequest"
+          },
+          "description": "Stores requests for the free ebook. Includes fields for name, email, and requestDate.",
+          "params": [
+            {
+              "name": "freeEbookRequestId",
+              "description": "Unique identifier for the free ebook request."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "This design prioritizes security and scalability for the Baby Bites Hub application.  The core feature requiring a specific data structure is the ebook request functionality.\n\nTo handle ebook requests securely and scalably, a dedicated collection `/free_ebook_requests` is created. This separates ebook request data from other application data, adhering to the Structural Segregation principle (B). Each document in this collection represents a request for the free ebook and contains all necessary information (name, email, requestDate).\n\n**Authorization Independence:** While this simple structure doesn't directly involve authorization in the same way as user-owned data, it's designed to easily accommodate future authorization requirements.  If access control to the requests becomes necessary (e.g., only admins can view them), a separate `/roles_admin/{uid}` collection could be used.  The rule would check for the existence of a document at this path.  This is an example of Authorization Independence using Existence over Content for global roles.\n\n**QAPs Support:**\n*   **Secure List Operations:** The structure allows for secure `list` operations on the `/free_ebook_requests` collection. Security rules can be implemented to restrict access to this collection to authorized users (e.g., admins) by checking for the existence of a document in the `/roles_admin/{uid}` collection. Thus rules are NOT filters.\n\nThe other entities (Recipes) are not included in the data structure, since the user's prompt did not ask for it"
+  }
+}
