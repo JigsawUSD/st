@@ -2,7 +2,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Baby, Carrot, ChefHat, Heart, UtensilsCrossed, CheckCircle2, HelpCircle, Flame, ShieldCheck, ListChecks, BookOpenCheck, Snowflake, ShieldAlert, BrainCircuit, Sparkles, Star, Salad, ClipboardCheck, Clock, Smile, Instagram, BadgeCheck, AlertTriangle, Wand2, BookUser } from 'lucide-react';
+import { Baby, Carrot, ChefHat, Heart, UtensilsCrossed, CheckCircle2, HelpCircle, Flame, ShieldCheck, ListChecks, BookOpenCheck, Snowflake, ShieldAlert, BrainCircuit, Sparkles, Star, Salad, ClipboardCheck, Clock, Smile, Instagram, BadgeCheck, AlertTriangle, Wand2, BookUser, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -20,20 +20,19 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { generateRecipeIdea } from '@/ai/flows/recipe-flow';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/hooks/use-toast';
+
 
 const findImage = (id: string) => PlaceHolderImages.find(img => img.id === id);
 
-const recipeFormSchema = z.object({
-  ingredients: z.string().min(10, {
-    message: 'Por favor, liste pelo menos alguns ingredientes.',
-  }),
+const leadFormSchema = z.object({
+  name: z.string().min(2, { message: 'Por favor, insira seu nome.' }),
+  email: z.string().email({ message: 'Por favor, insira um email válido.' }),
 });
 
-type RecipeFormValues = z.infer<typeof recipeFormSchema>;
+type LeadFormValues = z.infer<typeof leadFormSchema>;
 
 export default function Home() {
   const heroImage = findImage('hero');
@@ -58,29 +57,32 @@ export default function Home() {
     findImage('sentimental13'),
   ].filter(img => img);
   const authorImage = findImage('author');
+  const { toast } = useToast();
 
-  const [recipeIdea, setRecipeIdea] = useState('');
-  const [isGenerating, setIsGenerating] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const form = useForm<RecipeFormValues>({
-    resolver: zodResolver(recipeFormSchema),
+  const form = useForm<LeadFormValues>({
+    resolver: zodResolver(leadFormSchema),
     defaultValues: {
-      ingredients: '',
+      name: '',
+      email: '',
     },
   });
 
-  async function onSubmit(data: RecipeFormValues) {
-    setIsGenerating(true);
-    setRecipeIdea('');
-    try {
-      const result = await generateRecipeIdea(data);
-      setRecipeIdea(result.recipeSuggestion);
-    } catch (error) {
-      console.error(error);
-      setRecipeIdea('Desculpe, não consegui gerar uma receita agora. Tente novamente mais tarde.');
-    } finally {
-      setIsGenerating(false);
-    }
+  async function onSubmit(data: LeadFormValues) {
+    setIsSubmitting(true);
+    console.log('Lead capturado:', data);
+    // Simula o envio de um email
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    toast({
+      title: 'Sucesso!',
+      description: 'Sua amostra grátis foi enviada para o seu email.',
+      variant: 'default',
+    });
+
+    form.reset();
+    setIsSubmitting(false);
   }
 
 
@@ -144,47 +146,48 @@ export default function Home() {
           </div>
         </section>
 
-        {/* AI Recipe Generator Section */}
+        {/* Lead Capture Section */}
         <section className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
             <div className="bg-card rounded-2xl shadow-xl border p-6 sm:p-8 text-center">
-              <Wand2 className="h-12 w-12 text-primary mx-auto" />
-              <h2 className="text-2xl sm:text-3xl font-bold mt-4">Não sabe o que cozinhar hoje?</h2>
+              <Mail className="h-12 w-12 text-primary mx-auto" />
+              <h2 className="text-2xl sm:text-3xl font-bold mt-4">Receba uma Amostra Grátis do Ebook!</h2>
               <p className="mt-4 max-w-2xl mx-auto text-muted-foreground text-base md:text-lg">
-                Diga-nos quais ingredientes você tem em casa e nossa IA criará uma ideia de receita saudável para o seu bebê em segundos!
+                Deixe seu email abaixo para receber 20 páginas do nosso ebook e comece a transformar a alimentação do seu bebê hoje mesmo.
               </p>
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-6 max-w-lg mx-auto text-left">
                   <FormField
                     control={form.control}
-                    name="ingredients"
+                    name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Ingredientes (ex: banana, aveia, maçã)</FormLabel>
+                        <FormLabel>Seu Nome</FormLabel>
                         <FormControl>
-                          <Input placeholder="Liste os ingredientes separados por vírgula" {...field} />
+                          <Input placeholder="Digite seu nome" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  <Button type="submit" disabled={isGenerating} className="w-full">
-                    {isGenerating ? 'Gerando ideia...' : 'Gerar Receita Mágica'}
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Seu Melhor Email</FormLabel>
+                        <FormControl>
+                          <Input placeholder="exemplo@email.com" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <Button type="submit" disabled={isSubmitting} className="w-full">
+                    {isSubmitting ? 'Enviando...' : 'Receber Amostra Grátis'}
                   </Button>
                 </form>
               </Form>
-              {recipeIdea && (
-                <div className="mt-8 p-6 bg-primary/10 rounded-lg text-left">
-                   <h3 className="font-bold text-lg text-primary">Sugestão de Receita:</h3>
-                   <p className="mt-2 whitespace-pre-wrap">{recipeIdea}</p>
-                   <p className="mt-4 text-sm font-semibold">
-                    Gostou? Nosso ebook tem dezenas de receitas completas e detalhadas como esta!
-                   </p>
-                   <Button asChild className="mt-4 w-full sm:w-auto">
-                     <a href="#pricing">Comprar o Ebook Completo</a>
-                   </Button>
-                </div>
-              )}
             </div>
           </div>
         </section>
