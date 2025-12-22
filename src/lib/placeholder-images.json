@@ -9,8 +9,8 @@
     {
       "id": "gallery1",
       "description": "A bowl of green avocado puree for babies.",
-      "imageUrl": "https://images.unsplash.com/photo-1761314015019-158b483dfdf9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxhdm9jYWRvJTIwcHVyZWV8ZW58MHx8fHwxNzY2MTY2NzExfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "avocado puree"
+      "imageUrl": "https://i.pinimg.com/736x/5d/7e/76/5d7e765350f2dc9517f05f16b05b9c7a.jpg",
+      "imageHint": "baby food"
     },
     {
       "id": "gallery2",
@@ -33,7 +33,7 @@
     {
       "id": "testimonial1",
       "description": "Portrait of a smiling woman.",
-      "imageUrl": "https://images.unsplash.com/photo-1554727242-741c14fa561c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzbWlsaW5nJTIwd29tYW58ZW58MHx8fHwxNzY2MTU0NjEzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1554727242-741c14fa561c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzbWlsaW5nJTIwd29tYW58ZW58MHx8fHwxNzY2MTU0NjEzfDA&ixlibrb-4.1.0&q=80&w=1080",
       "imageHint": "smiling woman"
     },
     {
