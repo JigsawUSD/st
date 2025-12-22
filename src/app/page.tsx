@@ -16,28 +16,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { useToast } from '@/hooks/use-toast';
-import { Textarea } from '@/components/ui/textarea';
-import { generateRecipeIdea } from '@/ai/flows/recipe-flow';
-import { addDocumentNonBlocking, useFirestore } from '@/firebase';
-import { collection } from 'firebase/firestore';
-import { Label } from '@/components/ui/label';
+import Link from 'next/link';
 
 
 const findImage = (id: string) => PlaceHolderImages.find(img => img.id === id);
 
-const leadFormSchema = z.object({
-  name: z.string().min(2, { message: 'Por favor, insira seu nome.' }),
-  email: z.string().email({ message: 'Por favor, insira um email válido.' }),
-});
-
-type LeadFormValues = z.infer<typeof leadFormSchema>;
 
 export default function Home() {
   const heroImage = findImage('hero');
@@ -62,72 +45,7 @@ export default function Home() {
     findImage('sentimental13'),
   ].filter(img => img);
   const authorImage = findImage('author');
-  const { toast } = useToast();
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [recipeSuggestion, setRecipeSuggestion] = useState('');
-  const [generationError, setGenerationError] = useState('');
-  const firestore = useFirestore();
-
-  const form = useForm<LeadFormValues>({
-    resolver: zodResolver(leadFormSchema),
-    defaultValues: {
-      name: '',
-      email: '',
-    },
-  });
-
-  const recipeForm = useForm<{ ingredients: string }>({
-    defaultValues: { ingredients: '' },
-  });
-
-  async function handleGenerateRecipe({ ingredients }: { ingredients: string }) {
-    setIsGenerating(true);
-    setRecipeSuggestion('');
-    setGenerationError('');
-    try {
-      const result = await generateRecipeIdea({ ingredients });
-      setRecipeSuggestion(result.recipeSuggestion);
-    } catch (error) {
-      console.error('Error generating recipe:', error);
-      setGenerationError('Desculpe, não consegui gerar uma receita agora. Tente novamente mais tarde.');
-    } finally {
-      setIsGenerating(false);
-    }
-  }
-
-  async function onSubmit(data: LeadFormValues) {
-    setIsSubmitting(true);
-    try {
-      if (!firestore) {
-        throw new Error('Firestore is not initialized');
-      }
-      const leadsCollection = collection(firestore, 'free_ebook_requests');
-      addDocumentNonBlocking(leadsCollection, {
-        name: data.name,
-        email: data.email,
-        requestDate: new Date().toISOString(),
-      });
-      
-      toast({
-        title: 'Sucesso!',
-        description: 'Sua amostra grátis foi enviada para o seu email.',
-        variant: 'default',
-      });
   
-      form.reset();
-    } catch (error) {
-      console.error("Error saving lead: ", error);
-      toast({
-        title: 'Erro!',
-        description: 'Houve um problema ao salvar seu pedido. Tente novamente.',
-        variant: 'destructive',
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  }
 
 
   return (
@@ -609,6 +527,14 @@ export default function Home() {
 
       <footer className="bg-card border-t mt-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col justify-center items-center gap-4 text-center">
+          <div className="flex gap-4">
+            <Link href="/termos-de-servico" className="text-xs text-muted-foreground hover:text-primary transition-colors">
+              Termos de Serviço
+            </Link>
+            <Link href="/termos-de-usuario" className="text-xs text-muted-foreground hover:text-primary transition-colors">
+              Termos de Usuário
+            </Link>
+          </div>
           <a href="https://www.instagram.com/crescendosaudavel.oficial" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
             <Instagram className="h-5 w-5" />
             <span>crescendosaudavel.oficial</span>
@@ -628,4 +554,5 @@ export default function Home() {
     
 
     
+
 
