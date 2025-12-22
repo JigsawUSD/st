@@ -2,7 +2,7 @@ export const testimonials = [
   {
     name: 'Juliana S.',
     role: 'Mãe do Léo',
-    quote: 'O gerador de receitas salvou minhas noites! É incrível como ele cria pratos saudáveis com o que tenho na geladeira. O Léo está amando a variedade.',
+    quote: 'Este ebook foi um divisor de águas! As receitas são muito práticas e o Léo está amando a variedade. Finalmente encontrei a ajuda que precisava!',
   },
   {
     name: 'Mariana C.',
