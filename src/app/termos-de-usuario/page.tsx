@@ -12,46 +12,46 @@ export default function TermosDeUsuario() {
       </header>
       <main className="flex-1 container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="prose lg:prose-xl max-w-none">
-          <h1>Termos de Usuário</h1>
+          <h1>Termos de Uso e Responsabilidade do Usuário</h1>
           <p>
-            Estes Termos de Usuário regem o seu acesso e uso dos produtos e serviços oferecidos pela Crescendo Saudável.
+            Estes Termos de Usuário regem o seu acesso e uso dos produtos e serviços oferecidos pela Crescendo Saudável. Ao adquirir nosso produto, você concorda com as condições de uso, isenções e limitações de responsabilidade detalhadas abaixo.
           </p>
           
-          <h2>1. Sua Conta</h2>
+          <h2>1. Isenção de Responsabilidade Profissional</h2>
           <p>
-            Ao criar uma conta conosco ou realizar uma compra, você é responsável por manter a confidencialidade de
-            suas informações de acesso. Você concorda em aceitar a responsabilidade por todas as atividades que
-            ocorram sob sua conta.
+            O usuário declara estar ciente de que o conteúdo deste e-book tem caráter meramente informativo e educacional e não substitui, em hipótese alguma, o acompanhamento médico, nutricional ou de qualquer outro profissional de saúde habilitado.
+          </p>
+          <p>
+            Antes de iniciar ou modificar qualquer plano alimentar para si ou para terceiros, especialmente em casos de doenças preexistentes, alergias, intolerâncias alimentares, uso de medicamentos, ou em condições especiais como gestação, lactação e para alimentação infantil, é indispensável e obrigatória a consulta a um médico ou nutricionista.
           </p>
 
-          <h2>2. Conduta do Usuário</h2>
+          <h2>2. Responsabilidade do Usuário e Variação de Resultados</h2>
           <p>
-            Você concorda em não usar o site para qualquer finalidade ilegal ou proibida por estes termos. Você não
-            pode usar o site de qualquer maneira que possa danificar, desativar, sobrecarregar ou prejudicar o site
-            ou interferir no uso e aproveitamento de qualquer outra parte.
+            O uso das informações e receitas contidas neste e-book é de inteira e exclusiva responsabilidade do usuário. O sucesso e os resultados obtidos a partir das receitas podem variar significativamente de pessoa para pessoa, dependendo de fatores individuais como metabolismo, rotina, disciplina, genética e condições de saúde preexistentes.
           </p>
-
-          <h2>3. Conteúdo Gerado pelo Usuário</h2>
           <p>
-            Se você postar comentários, depoimentos ou outro conteúdo, você concede à Crescendo Saudável um direito
-            não exclusivo, livre de royalties, perpétuo, irrevogável e totalmente sublicenciável de usar, reproduzir,
-            modificar, adaptar, publicar, traduzir, criar trabalhos derivados, distribuir e exibir tal conteúdo
-            em todo o mundo, em qualquer mídia.
+            Não há qualquer promessa ou garantia de emagrecimento, cura de doenças, melhora clínica ou resultados específicos. O autor e o vendedor isentam-se de qualquer responsabilidade por:
+          </p>
+          <ul>
+            <li>Uso inadequado das receitas ou das informações contidas no material.</li>
+            <li>Reações adversas, alérgicas ou qualquer outro problema de saúde decorrente do consumo dos alimentos sugeridos.</li>
+            <li>Interpretação incorreta do conteúdo.</li>
+            <li>Decisões tomadas com base nas informações do e-book sem a devida consulta a um profissional de saúde.</li>
+          </ul>
+
+          <h2>3. Conduta do Usuário</h2>
+          <p>
+            Você concorda em não usar o site e o produto para qualquer finalidade ilegal ou proibida por estes termos. Você não pode usar os serviços de qualquer maneira que possa danificar, desativar, sobrecarregar ou prejudicar a plataforma ou interferir no uso e aproveitamento de qualquer outra parte.
           </p>
 
           <h2>4. Privacidade</h2>
           <p>
-            Nossa Política de Privacidade, que também rege sua visita ao nosso site, pode ser encontrada [aqui - link para política de privacidade, se houver]. Por favor, revise nossa Política de Privacidade para entender nossas práticas.
-          </p>
-
-          <h2>5. Isenção de Garantias e Limitação de Responsabilidade</h2>
-          <p>
-            Este site e todo o conteúdo são fornecidos "como estão", sem garantias de qualquer tipo. A Crescendo Saudável não garante que o site, suas informações ou emails enviados estejam livres de vírus ou outros componentes prejudiciais.
+            O tratamento de seus dados pessoais é regido por nossa Política de Privacidade. Por favor, revise-a para entender nossas práticas.
           </p>
           
-          <h2>6. Lei Aplicável</h2>
+          <h2>5. Lei Aplicável e Foro</h2>
           <p>
-            Ao visitar nosso site, você concorda que as leis do Brasil, sem levar em conta os princípios de conflito de leis, regerão estes Termos de Usuário e qualquer disputa de qualquer tipo que possa surgir entre você e a Crescendo Saudável.
+            Ao visitar nosso site e adquirir nossos produtos, você concorda que as leis da República Federativa do Brasil regerão estes Termos de Usuário e qualquer disputa que possa surgir. Fica eleito o foro da comarca de domicílio do autor para dirimir quaisquer controvérsias, com renúncia expressa a qualquer outro, por mais privilegiado que seja.
           </p>
 
           <p className="mt-8">
