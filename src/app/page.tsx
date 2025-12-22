@@ -34,6 +34,7 @@ export default function Home() {
     findImage('sentimental3'),
     findImage('sentimental8'),
     findImage('sentimental10'),
+    findImage('sentimental11'),
   ].filter(img => img);
 
   return (
