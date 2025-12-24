@@ -21,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={`${poppins.variable}`}>
-      <body className="font-sans antialiased">
+    <html lang="pt-BR" className={`${poppins.variable} overflow-x-hidden`}>
+      <body className="font-sans antialiased overflow-x-hidden">
         <FirebaseClientProvider>{children}</FirebaseClientProvider>
         <Toaster />
       </body>

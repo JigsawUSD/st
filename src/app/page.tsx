@@ -98,6 +98,9 @@ export default function Home() {
   const playerRef = useRef<any>(null);
   
   useEffect(() => {
+    let terminou = false;
+    let progressInterval: NodeJS.Timeout;
+
     if (loadPlayer && typeof window !== 'undefined' && !(window as any).YT) {
       const tag = document.createElement('script');
       tag.src = "https://www.youtube.com/iframe_api";
@@ -108,8 +111,6 @@ export default function Home() {
         document.head.appendChild(tag);
       }
     }
-
-    let progressInterval: NodeJS.Timeout;
     
     (window as any).onYouTubeIframeAPIReady = function() {
       if (playerRef.current) return;
@@ -142,7 +143,7 @@ export default function Home() {
     }
 
     function onStateChange(event: any) {
-      if (event.data === (window as any).YT.PlayerState.PLAYING) {
+      if (event.data === (window as any).YT.PlayerState.PLAYING && !terminou) {
         const duration = playerRef.current.getDuration();
         const halfwayPoint = duration / 2;
 
@@ -157,12 +158,13 @@ export default function Home() {
          clearInterval(progressInterval);
       }
 
-      if (event.data === (window as any).YT.PlayerState.PAUSED && !playerRef.current.isFinished) {
+      if (event.data === (window as any).YT.PlayerState.PAUSED && !terminou) {
         playerRef.current.playVideo();
       }
 
       if (event.data === (window as any).YT.PlayerState.ENDED) {
-        playerRef.current.isFinished = true; 
+        terminou = true;
+        playerRef.current.pauseVideo();
         setShowCtas(true);
         clearInterval(progressInterval);
       }
@@ -541,7 +543,7 @@ export default function Home() {
             </div>
             {showCtas && (
               <div className="mt-12 text-center">
-                <Button size="lg" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 text-base sm:text-xl px-8 py-6 smpx-10 sm:py-7 rounded-full shadow-xl transition-transform transform hover:scale-105 animate-pulse">
+                <Button size="lg" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 text-base sm:text-xl px-8 py-6 sm:px-10 sm:py-7 rounded-full shadow-xl transition-transform transform hover:scale-105 animate-pulse">
                   <a href="https://go.hotmart.com/X103471648N?ap=9f82">Não perca essa oportunidade</a>
                 </Button>
               </div>
@@ -662,7 +664,7 @@ export default function Home() {
                   <span className="text-lg sm:text-2xl font-semibold text-muted-foreground line-through">de R$99,90</span>
                   <span className="text-5xl sm:text-6xl font-bold text-primary">por R$39,90</span>
                 </div>
-                <Button asChild size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 text-base sm:text-xl px-8 py-6 smpy-7 rounded-full shadow-lg transition-transform transform hover:scale-105 animate-pulse">
+                <Button asChild size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 text-base sm:text-xl px-8 py-6 sm:py-7 rounded-full shadow-lg transition-transform transform hover:scale-105 animate-pulse">
                   <a href="https://go.hotmart.com/X103471648N?ap=9f82">
                     Garantir meu Acesso Imediato!
                   </a>
