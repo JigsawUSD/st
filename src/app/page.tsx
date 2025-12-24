@@ -635,6 +635,13 @@ export default function Home() {
                 </AccordionItem>
               ))}
             </Accordion>
+             {showCtas && (
+              <div className="mt-12 text-center">
+                <Button size="lg" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 text-base sm:text-xl px-8 py-6 sm:px-10 sm:py-7 rounded-full shadow-xl transition-transform transform hover:scale-105">
+                  <a href="https://go.hotmart.com/X103471648N?ap=9f82">Tirei minhas dúvidas e quero comprar!</a>
+                </Button>
+              </div>
+            )}
           </div>
         </section>
 
@@ -691,4 +698,6 @@ export default function Home() {
     </div>
   );
 }
+    
+
     
