@@ -3,6 +3,11 @@ import type {NextConfig} from 'next';
 const nextConfig: NextConfig = {
   /* config options here */
   output: 'export',
+
+  // Adicionado para compatibilidade com GitHub Pages
+  basePath: '/st',
+  assetPrefix: '/st/',
+  
   typescript: {
     ignoreBuildErrors: true,
   },
