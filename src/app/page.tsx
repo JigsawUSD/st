@@ -230,7 +230,7 @@ export default function Home() {
               </div>
             </div>
             {showCtas && (
-              <div className="mt-10 transition-opacity duration-500 ease-in opacity-100 text-center">
+              <div className="mt-10 text-center transition-opacity duration-500 ease-in opacity-100">
                 <Button size="lg" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 text-base sm:text-xl px-8 py-6 sm:px-10 sm:py-7 rounded-full shadow-xl transition-transform transform hover:scale-105 animate-pulse">
                   <a href="https://go.hotmart.com/X103471648N?ap=9f82">QUERO ACESSO IMEDIATO POR R$39,90</a>
                 </Button>
