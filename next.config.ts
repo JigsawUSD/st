@@ -1,10 +1,11 @@
+
 import type {NextConfig} from 'next';
 
 const isGithubPages = process.env.GITHUB_PAGES === 'true';
 
 const nextConfig: NextConfig = {
   /* config options here */
-  output: 'export',
+  output: isGithubPages ? 'export' : undefined,
   distDir: isGithubPages ? 'docs' : '.next',
 
   typescript: {
@@ -41,7 +42,7 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
       {
-        protocol: 'httpshttps',
+        protocol: 'https',
         hostname: 'storage.googleapis.com',
         port: '',
         pathname: '/**',
