@@ -5,6 +5,7 @@ const isGithubPages = process.env.GITHUB_PAGES === 'true';
 const nextConfig: NextConfig = {
   /* config options here */
   output: 'export',
+  distDir: isGithubPages ? 'docs' : '.next',
   
   basePath: isGithubPages ? '/st' : undefined,
   assetPrefix: isGithubPages ? '/st/' : undefined,

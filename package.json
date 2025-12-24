@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack -p 9002",
-    "build": "NODE_ENV=production next build",
-    "build:github": "GITHUB_PAGES=true NODE_ENV=production next build",
+    "build": "GITHUB_PAGES=true NODE_ENV=production next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit"
