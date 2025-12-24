@@ -6,9 +6,6 @@ const nextConfig: NextConfig = {
   /* config options here */
   output: 'export',
   distDir: isGithubPages ? 'docs' : '.next',
-  
-  basePath: isGithubPages ? '/st' : undefined,
-  assetPrefix: isGithubPages ? '/st/' : undefined,
 
   typescript: {
     ignoreBuildErrors: true,
@@ -44,7 +41,7 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
       {
-        protocol: 'https',
+        protocol: 'httpshttps',
         hostname: 'storage.googleapis.com',
         port: '',
         pathname: '/**',
